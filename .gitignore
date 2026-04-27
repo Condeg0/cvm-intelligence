@@ -53,6 +53,12 @@ DOCS/
 *.log
 *.tmp
 
-# Claude
-.claude
-Claude.md
+# Claude / AI assistant files — personal use only, not for the public repo
+.claude/
+CLAUDE.md
+**/CLAUDE.md
+claude_settings.json
+gitignore.txt
+
+# Personal reference — not for public repo
+MANUAL.md
