@@ -1,0 +1,345 @@
+[
+  {
+    "ticker": "PETR4",
+    "cnpj": "33.000.167/0001-01",
+    "cd_cvm": "9512",
+    "name": "PETRÓLEO BRASILEIRO  S.A.  - PETROBRAS",
+    "sector": "Petróleo e Gás"
+  },
+  {
+    "ticker": "VALE3",
+    "cnpj": "33.592.510/0001-54",
+    "cd_cvm": "4170",
+    "name": "VALE S.A.",
+    "sector": "Mineração"
+  },
+  {
+    "ticker": "ITUB4",
+    "cnpj": "60.872.504/0001-23",
+    "cd_cvm": "19348",
+    "name": "ITAÚ UNIBANCO HOLDING S.A.",
+    "sector": "Financeiro"
+  },
+  {
+    "ticker": "BBDC4",
+    "cnpj": "60.746.948/0001-12",
+    "cd_cvm": "906",
+    "name": "BANCO BRADESCO S.A.",
+    "sector": "Financeiro"
+  },
+  {
+    "ticker": "ABEV3",
+    "cnpj": "07.526.557/0001-00",
+    "cd_cvm": "23264",
+    "name": "AMBEV S.A.",
+    "sector": "Bebidas"
+  },
+  {
+    "ticker": "B3SA3",
+    "cnpj": "09.346.601/0001-25",
+    "cd_cvm": "21610",
+    "name": "B3 S.A. - BRASIL, BOLSA, BALCÃO",
+    "sector": "Serviços Financeiros"
+  },
+  {
+    "ticker": "WEGE3",
+    "cnpj": "84.429.695/0001-11",
+    "cd_cvm": "5410",
+    "name": "WEG SA",
+    "sector": "Bens Industriais"
+  },
+  {
+    "ticker": "SUZB3",
+    "cnpj": "16.404.287/0001-55",
+    "cd_cvm": "13986",
+    "name": "SUZANO S.A.",
+    "sector": "Papel e Celulose"
+  },
+  {
+    "ticker": "BBAS3",
+    "cnpj": "00.000.000/0001-91",
+    "cd_cvm": "1023",
+    "name": "BANCO DO BRASIL S.A.",
+    "sector": "Financeiro"
+  },
+  {
+    "ticker": "ELET3",
+    "cnpj": "33.541.368/0001-16",
+    "cd_cvm": "3328",
+    "name": "AXIA ENERGIA NORDESTE S.A.",
+    "sector": "Energia Elétrica"
+  },
+  {
+    "ticker": "CSAN3",
+    "cnpj": "50.746.577/0001-15",
+    "cd_cvm": "19836",
+    "name": "COSAN S.A.",
+    "sector": "Petróleo e Gás"
+  },
+  {
+    "ticker": "EQTL3",
+    "cnpj": "03.220.438/0001-73",
+    "cd_cvm": "20010",
+    "name": "EQUATORIAL S.A.",
+    "sector": "Energia Elétrica"
+  },
+  {
+    "ticker": "VIVT3",
+    "cnpj": "02.558.157/0001-62",
+    "cd_cvm": "17671",
+    "name": "TELEFÔNICA BRASIL S.A.",
+    "sector": "Telecomunicações"
+  },
+  {
+    "ticker": "EGIE3",
+    "cnpj": "02.474.103/0001-19",
+    "cd_cvm": "17329",
+    "name": "ENGIE BRASIL ENERGIA S.A.",
+    "sector": "Energia Elétrica"
+  },
+  {
+    "ticker": "RAIL3",
+    "cnpj": "02.387.241/0001-60",
+    "cd_cvm": "17450",
+    "name": "RUMO S.A.",
+    "sector": "Transporte"
+  },
+  {
+    "ticker": "EMBR3",
+    "cnpj": "07.689.002/0001-89",
+    "cd_cvm": "20087",
+    "name": "EMBRAER S.A.",
+    "sector": "Aeronáutico"
+  },
+  {
+    "ticker": "JBSS3",
+    "cnpj": "02.916.265/0001-60",
+    "cd_cvm": "20575",
+    "name": "JBS SA",
+    "sector": "Alimentos"
+  },
+  {
+    "ticker": "BRFS3",
+    "cnpj": "01.838.723/0001-27",
+    "cd_cvm": "16292",
+    "name": "BRF S.A.",
+    "sector": "Alimentos"
+  },
+  {
+    "ticker": "KLBN11",
+    "cnpj": "89.637.490/0001-45",
+    "cd_cvm": "12653",
+    "name": "KLABIN S.A.",
+    "sector": "Papel e Celulose"
+  },
+  {
+    "ticker": "LREN3",
+    "cnpj": "92.754.738/0001-62",
+    "cd_cvm": "8133",
+    "name": "LOJAS RENNER SA",
+    "sector": "Varejo"
+  },
+  {
+    "ticker": "RADL3",
+    "cnpj": "61.585.865/0001-51",
+    "cd_cvm": "5258",
+    "name": "RAIA DROGASIL S.A.",
+    "sector": "Varejo"
+  },
+  {
+    "ticker": "TOTS3",
+    "cnpj": "53.113.791/0001-22",
+    "cd_cvm": "19992",
+    "name": "TOTVS S.A",
+    "sector": "Tecnologia"
+  },
+  {
+    "ticker": "SBSP3",
+    "cnpj": "43.776.517/0001-80",
+    "cd_cvm": "14443",
+    "name": "CIA SANEAMENTO BÁSICO ESTADO SÃO PAULO",
+    "sector": "Saneamento"
+  },
+  {
+    "ticker": "CMIG4",
+    "cnpj": "17.155.730/0001-64",
+    "cd_cvm": "2453",
+    "name": "CIA ENERG MINAS GERAIS - CEMIG",
+    "sector": "Energia Elétrica"
+  },
+  {
+    "ticker": "GGBR4",
+    "cnpj": "33.611.500/0001-19",
+    "cd_cvm": "3980",
+    "name": "GERDAU S.A.",
+    "sector": "Siderurgia"
+  },
+  {
+    "ticker": "HYPE3",
+    "cnpj": "02.932.074/0001-91",
+    "cd_cvm": "21431",
+    "name": "HYPERA S/A",
+    "sector": "Farmacêutico"
+  },
+  {
+    "ticker": "NTCO3",
+    "cnpj": "71.673.990/0001-77",
+    "cd_cvm": "19550",
+    "name": "NATURA COSMETICOS SA",
+    "sector": "Higiene e Beleza"
+  },
+  {
+    "ticker": "VBBR3",
+    "cnpj": "34.274.233/0001-02",
+    "cd_cvm": "24295",
+    "name": "VIBRA ENERGIA S/A",
+    "sector": "Petróleo e Gás"
+  },
+  {
+    "ticker": "PRIO3",
+    "cnpj": "10.629.105/0001-68",
+    "cd_cvm": "22187",
+    "name": "PRIO S.A.",
+    "sector": "Petróleo e Gás"
+  },
+  {
+    "ticker": "CPLE6",
+    "cnpj": "76.483.817/0001-20",
+    "cd_cvm": "14311",
+    "name": "COMPANHIA PARANAENSE DE ENERGIA COPEL",
+    "sector": "Energia Elétrica"
+  },
+  {
+    "ticker": "ENEV3",
+    "cnpj": "04.423.567/0001-21",
+    "cd_cvm": "21237",
+    "name": "ENEVA S.A.",
+    "sector": "Energia Elétrica"
+  },
+  {
+    "ticker": "HAPV3",
+    "cnpj": "05.197.443/0001-38",
+    "cd_cvm": "24392",
+    "name": "HAPVIDA PARTICIPAÇÕES E INVESTIMENTOS S.A.",
+    "sector": "Saúde"
+  },
+  {
+    "ticker": "RDOR3",
+    "cnpj": "06.047.087/0001-39",
+    "cd_cvm": "24821",
+    "name": "REDE D'OR SÃO LUIZ S.A.",
+    "sector": "Saúde"
+  },
+  {
+    "ticker": "CMIN3",
+    "cnpj": "08.902.291/0001-15",
+    "cd_cvm": "25585",
+    "name": "CSN MINERAÇÃO S.A.",
+    "sector": "Mineração"
+  },
+  {
+    "ticker": "CSNA3",
+    "cnpj": "33.042.730/0001-04",
+    "cd_cvm": "4030",
+    "name": "CIA SIDERURGICA NACIONAL",
+    "sector": "Siderurgia"
+  },
+  {
+    "ticker": "USIM5",
+    "cnpj": "60.894.730/0001-05",
+    "cd_cvm": "14320",
+    "name": "USINAS SID DE MINAS GERAIS S.A.-USIMINAS",
+    "sector": "Siderurgia"
+  },
+  {
+    "ticker": "BEEF3",
+    "cnpj": "67.620.377/0001-14",
+    "cd_cvm": "20931",
+    "name": "MINERVA S/A",
+    "sector": "Alimentos"
+  },
+  {
+    "ticker": "MULT3",
+    "cnpj": "07.816.890/0001-53",
+    "cd_cvm": "20982",
+    "name": "MULTIPLAN - EMPREEND IMOBILIARIOS S.A.",
+    "sector": "Imobiliário"
+  },
+  {
+    "ticker": "SANB11",
+    "cnpj": "90.400.888/0001-42",
+    "cd_cvm": "20532",
+    "name": "BANCO SANTANDER (BRASIL) S.A.",
+    "sector": "Financeiro"
+  },
+  {
+    "ticker": "PCAR3",
+    "cnpj": "47.508.411/0001-56",
+    "cd_cvm": "14826",
+    "name": "COMPANHIA BRASILEIRA DE DISTRIBUIÇÃO",
+    "sector": "Varejo"
+  },
+  {
+    "ticker": "IRBR3",
+    "cnpj": "33.376.989/0001-91",
+    "cd_cvm": "24180",
+    "name": "IRB - BRASIL RESSEGUROS S.A.",
+    "sector": "Seguros"
+  },
+  {
+    "ticker": "FLRY3",
+    "cnpj": "60.840.055/0001-31",
+    "cd_cvm": "21881",
+    "name": "FLEURY SA",
+    "sector": "Saúde"
+  },
+  {
+    "ticker": "MRFG3",
+    "cnpj": "03.853.896/0001-40",
+    "cd_cvm": "20788",
+    "name": "MARFRIG GLOBAL FOODS SA",
+    "sector": "Alimentos"
+  },
+  {
+    "ticker": "ALPA4",
+    "cnpj": "61.079.117/0001-05",
+    "cd_cvm": "10456",
+    "name": "ALPARGATAS SA",
+    "sector": "Calçados"
+  },
+  {
+    "ticker": "MGLU3",
+    "cnpj": "47.960.950/0001-21",
+    "cd_cvm": "22470",
+    "name": "MAGAZINE LUIZA SA",
+    "sector": "Varejo"
+  },
+  {
+    "ticker": "LCAM3",
+    "cnpj": "02.286.479/0001-08",
+    "cd_cvm": "24813",
+    "name": "LOCALIZA  FLEET S.A.",
+    "sector": "Locação de Veículos"
+  },
+  {
+    "ticker": "BRAP4",
+    "cnpj": "03.847.461/0001-92",
+    "cd_cvm": "18724",
+    "name": "BRADESPAR S/A",
+    "sector": "Holdings"
+  },
+  {
+    "ticker": "RECV3",
+    "cnpj": "03.342.704/0001-30",
+    "cd_cvm": "25780",
+    "name": "PETRORECÔNCAVO S.A.",
+    "sector": "Petróleo e Gás"
+  },
+  {
+    "ticker": "PETZ3",
+    "cnpj": "18.328.118/0001-09",
+    "cd_cvm": "25089",
+    "name": "PET CENTER COMÉRCIO E PARTICIPAÇÕES S.A.",
+    "sector": "Varejo"
+  }
+]

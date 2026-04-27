@@ -1,0 +1,1033 @@
+{
+  "queries": [
+    {
+      "query": "Que visão geral este trecho oferece sobre a composição dos ativos e parte dos passivos da CSNA3?",
+      "query_type": "thematic",
+      "filing_id": "CSNA3_ITR_2024-06-30_1",
+      "anchor_chunk_id": "CSNA3_ITR_2024-06-30_1_0058",
+      "relevant_chunk_ids": [
+        "CSNA3_ITR_2024-06-30_1_0058",
+        "CSNA3_ITR_2024-06-30_1_0057",
+        "CSNA3_ITR_2024-06-30_1_0059"
+      ]
+    },
+    {
+      "query": "Como a RADL3 monitora e garante o cumprimento de suas obrigações financeiras e não financeiras relacionadas a dívidas?",
+      "query_type": "thematic",
+      "filing_id": "RADL3_ITR_2023-03-31_1",
+      "anchor_chunk_id": "RADL3_ITR_2023-03-31_1_0074",
+      "relevant_chunk_ids": [
+        "RADL3_ITR_2023-03-31_1_0074",
+        "RADL3_ITR_2023-03-31_1_0073",
+        "RADL3_ITR_2023-03-31_1_0075"
+      ]
+    },
+    {
+      "query": "Como a Receita Líquida da Comerc evoluiu no 3T25 em comparação com o 3T24 e o 2T25?",
+      "query_type": "temporal",
+      "filing_id": "VBBR3_ITR_2025-09-30_1",
+      "anchor_chunk_id": "VBBR3_ITR_2025-09-30_1_0016",
+      "relevant_chunk_ids": [
+        "VBBR3_ITR_2025-09-30_1_0016",
+        "VBBR3_ITR_2025-09-30_1_0015",
+        "VBBR3_ITR_2025-09-30_1_0017"
+      ]
+    },
+    {
+      "query": "Qual foi a utilização da capacidade de produção de aço bruto da Gerdau no 1T25?",
+      "query_type": "factual",
+      "filing_id": "GGBR4_ITR_2025-03-31_1",
+      "anchor_chunk_id": "GGBR4_ITR_2025-03-31_1_0006",
+      "relevant_chunk_ids": [
+        "GGBR4_ITR_2025-03-31_1_0006",
+        "GGBR4_ITR_2025-03-31_1_0005",
+        "GGBR4_ITR_2025-03-31_1_0007"
+      ]
+    },
+    {
+      "query": "Qual a abordagem estratégica da SABESP para a operacionalização de grandes contratos de serviços públicos, como o de tratamento de resíduos em Diadema?",
+      "query_type": "thematic",
+      "filing_id": "SBSP3_ITR_2023-06-30_1",
+      "anchor_chunk_id": "SBSP3_ITR_2023-06-30_1_0052",
+      "relevant_chunk_ids": [
+        "SBSP3_ITR_2023-06-30_1_0052",
+        "SBSP3_ITR_2023-06-30_1_0051",
+        "SBSP3_ITR_2023-06-30_1_0053"
+      ]
+    },
+    {
+      "query": "Qual a participação da Companhia no ShoppingVilaOlímpia em 31 de março de 2024?",
+      "query_type": "factual",
+      "filing_id": "MULT3_ITR_2024-03-31_1",
+      "anchor_chunk_id": "MULT3_ITR_2024-03-31_1_0074",
+      "relevant_chunk_ids": [
+        "MULT3_ITR_2024-03-31_1_0074",
+        "MULT3_ITR_2024-03-31_1_0073",
+        "MULT3_ITR_2024-03-31_1_0075"
+      ]
+    },
+    {
+      "query": "Qual é a diferença na participação societária do ITAÚ UNIBANCO HOLDING CONSOLIDADO na Corretora de Títulos e Valores Mobiliários dos Estados Unidos em comparação com o Banco Itaú Chile?",
+      "query_type": "comparative",
+      "filing_id": "ITUB4_ITR_2024-03-31_1",
+      "anchor_chunk_id": "ITUB4_ITR_2024-03-31_1_0033",
+      "relevant_chunk_ids": [
+        "ITUB4_ITR_2024-03-31_1_0033",
+        "ITUB4_ITR_2024-03-31_1_0032",
+        "ITUB4_ITR_2024-03-31_1_0034"
+      ]
+    },
+    {
+      "query": "Qual foi o valor contábil total do passivo em 30 de setembro de 2024?",
+      "query_type": "factual",
+      "filing_id": "SANB11_ITR_2024-09-30_1",
+      "anchor_chunk_id": "SANB11_ITR_2024-09-30_1_0134",
+      "relevant_chunk_ids": [
+        "SANB11_ITR_2024-09-30_1_0134",
+        "SANB11_ITR_2024-09-30_1_0133",
+        "SANB11_ITR_2024-09-30_1_0135"
+      ]
+    },
+    {
+      "query": "Como o crescimento do Marketplace (3P) no 4T23 se compara ao crescimento do E-commerce Tradicional (1P) no mesmo período?",
+      "query_type": "comparative",
+      "filing_id": "MGLU3_DFP_2023-12-31_1",
+      "anchor_chunk_id": "MGLU3_DFP_2023-12-31_1_0039",
+      "relevant_chunk_ids": [
+        "MGLU3_DFP_2023-12-31_1_0039",
+        "MGLU3_DFP_2023-12-31_1_0038",
+        "MGLU3_DFP_2023-12-31_1_0040"
+      ]
+    },
+    {
+      "query": "Como o valor de PIS/Pasep e Cofins não circulante do primeiro período se compara ao do segundo período apresentado?",
+      "query_type": "comparative",
+      "filing_id": "CMIG4_DFP_2023-12-31_1",
+      "anchor_chunk_id": "CMIG4_DFP_2023-12-31_1_0275",
+      "relevant_chunk_ids": [
+        "CMIG4_DFP_2023-12-31_1_0275",
+        "CMIG4_DFP_2023-12-31_1_0274",
+        "CMIG4_DFP_2023-12-31_1_0276"
+      ]
+    },
+    {
+      "query": "Quantas ações ordinárias foram emitidas no aumento de capital social em 09/10/2020?",
+      "query_type": "factual",
+      "filing_id": "ENEV3_ITR_2024-03-31_1",
+      "anchor_chunk_id": "ENEV3_ITR_2024-03-31_1_0152",
+      "relevant_chunk_ids": [
+        "ENEV3_ITR_2024-03-31_1_0152",
+        "ENEV3_ITR_2024-03-31_1_0151",
+        "ENEV3_ITR_2024-03-31_1_0153"
+      ]
+    },
+    {
+      "query": "Como a CMIG4 estrutura suas captações de recursos via debêntures, considerando os indexadores e a destinação dos valores levantados?",
+      "query_type": "thematic",
+      "filing_id": "CMIG4_DFP_2022-12-31_1",
+      "anchor_chunk_id": "CMIG4_DFP_2022-12-31_1_0279",
+      "relevant_chunk_ids": [
+        "CMIG4_DFP_2022-12-31_1_0279",
+        "CMIG4_DFP_2022-12-31_1_0278",
+        "CMIG4_DFP_2022-12-31_1_0280"
+      ]
+    },
+    {
+      "query": "Quais são os principais temas e categorias financeiras detalhados na estrutura deste relatório?",
+      "query_type": "thematic",
+      "filing_id": "EMBR3_ITR_2024-06-30_1",
+      "anchor_chunk_id": "EMBR3_ITR_2024-06-30_1_0019",
+      "relevant_chunk_ids": [
+        "EMBR3_ITR_2024-06-30_1_0019",
+        "EMBR3_ITR_2024-06-30_1_0020"
+      ]
+    },
+    {
+      "query": "Qual a abordagem da Petrobras para validar e endossar as informações financeiras intermediárias, conforme a declaração de seus diretores?",
+      "query_type": "thematic",
+      "filing_id": "PETR4_ITR_2023-03-31_1",
+      "anchor_chunk_id": "PETR4_ITR_2023-03-31_1_0119",
+      "relevant_chunk_ids": [
+        "PETR4_ITR_2023-03-31_1_0119",
+        "PETR4_ITR_2023-03-31_1_0118"
+      ]
+    },
+    {
+      "query": "De que maneiras a ENEV3 estrutura suas operações e contratos para gerenciar o fornecimento e a comercialização de energia em suas diferentes usinas?",
+      "query_type": "thematic",
+      "filing_id": "ENEV3_ITR_2023-09-30_1",
+      "anchor_chunk_id": "ENEV3_ITR_2023-09-30_1_0038",
+      "relevant_chunk_ids": [
+        "ENEV3_ITR_2023-09-30_1_0038",
+        "ENEV3_ITR_2023-09-30_1_0037",
+        "ENEV3_ITR_2023-09-30_1_0039"
+      ]
+    },
+    {
+      "query": "Como os passivos de arrendamento totais da Companhia evoluíram de 01 de janeiro de 2024 para 31 de março de 2024?",
+      "query_type": "temporal",
+      "filing_id": "RAIL3_ITR_2024-03-31_1",
+      "anchor_chunk_id": "RAIL3_ITR_2024-03-31_1_0047",
+      "relevant_chunk_ids": [
+        "RAIL3_ITR_2024-03-31_1_0047",
+        "RAIL3_ITR_2024-03-31_1_0046",
+        "RAIL3_ITR_2024-03-31_1_0048"
+      ]
+    },
+    {
+      "query": "Como a participação percentual da Klabin em suas empresas controladas listadas se compara entre 30 de junho de 2022 e 30 de junho de 2023?",
+      "query_type": "comparative",
+      "filing_id": "KLBN11_ITR_2023-06-30_1",
+      "anchor_chunk_id": "KLBN11_ITR_2023-06-30_1_0054",
+      "relevant_chunk_ids": [
+        "KLBN11_ITR_2023-06-30_1_0054",
+        "KLBN11_ITR_2023-06-30_1_0053",
+        "KLBN11_ITR_2023-06-30_1_0055"
+      ]
+    },
+    {
+      "query": "Qual norma define os critérios para a forma e o conteúdo da Demonstração do Valor Adicionado (DVA)?",
+      "query_type": "factual",
+      "filing_id": "RAIL3_ITR_2023-06-30_1",
+      "anchor_chunk_id": "RAIL3_ITR_2023-06-30_1_0087",
+      "relevant_chunk_ids": [
+        "RAIL3_ITR_2023-06-30_1_0087",
+        "RAIL3_ITR_2023-06-30_1_0086",
+        "RAIL3_ITR_2023-06-30_1_0088"
+      ]
+    },
+    {
+      "query": "Qual método atuarial é utilizado para o custeio do plano?",
+      "query_type": "factual",
+      "filing_id": "ITUB4_ITR_2024-06-30_1",
+      "anchor_chunk_id": "ITUB4_ITR_2024-06-30_1_0148",
+      "relevant_chunk_ids": [
+        "ITUB4_ITR_2024-06-30_1_0148",
+        "ITUB4_ITR_2024-06-30_1_0147",
+        "ITUB4_ITR_2024-06-30_1_0149"
+      ]
+    },
+    {
+      "query": "Qual foi o sinistro retido total acumulado nos seis meses de 2023?",
+      "query_type": "factual",
+      "filing_id": "IRBR3_ITR_2023-06-30_2",
+      "anchor_chunk_id": "IRBR3_ITR_2023-06-30_2_0017",
+      "relevant_chunk_ids": [
+        "IRBR3_ITR_2023-06-30_2_0017",
+        "IRBR3_ITR_2023-06-30_2_0016",
+        "IRBR3_ITR_2023-06-30_2_0018"
+      ]
+    },
+    {
+      "query": "Qual era o montante total das garantias para a construção de projetos da Companhia em 31 de dezembro de 2022?",
+      "query_type": "factual",
+      "filing_id": "EGIE3_DFP_2022-12-31_1",
+      "anchor_chunk_id": "EGIE3_DFP_2022-12-31_1_0290",
+      "relevant_chunk_ids": [
+        "EGIE3_DFP_2022-12-31_1_0290",
+        "EGIE3_DFP_2022-12-31_1_0289",
+        "EGIE3_DFP_2022-12-31_1_0291"
+      ]
+    },
+    {
+      "query": "Qual a diferença na ABL total dos shopping centers em comparação com a ABL total dos complexos corporativos da Multiplan no 3T25?",
+      "query_type": "comparative",
+      "filing_id": "MULT3_ITR_2025-09-30_1",
+      "anchor_chunk_id": "MULT3_ITR_2025-09-30_1_0004",
+      "relevant_chunk_ids": [
+        "MULT3_ITR_2025-09-30_1_0004",
+        "MULT3_ITR_2025-09-30_1_0003",
+        "MULT3_ITR_2025-09-30_1_0005"
+      ]
+    },
+    {
+      "query": "Qual a estratégia da Companhia para a gestão de suas contingências fiscais, administrativas, trabalhistas e cíveis com probabilidade de perda possível?",
+      "query_type": "thematic",
+      "filing_id": "MULT3_ITR_2023-03-31_3",
+      "anchor_chunk_id": "MULT3_ITR_2023-03-31_3_0168",
+      "relevant_chunk_ids": [
+        "MULT3_ITR_2023-03-31_3_0168",
+        "MULT3_ITR_2023-03-31_3_0167",
+        "MULT3_ITR_2023-03-31_3_0169"
+      ]
+    },
+    {
+      "query": "Como se compara a participação percentual total de \"Outros Acionistas\" em 30 de junho de 2023 com a de 30 de junho de 2022?",
+      "query_type": "comparative",
+      "filing_id": "BBDC4_ITR_2023-06-30_1",
+      "anchor_chunk_id": "BBDC4_ITR_2023-06-30_1_0330",
+      "relevant_chunk_ids": [
+        "BBDC4_ITR_2023-06-30_1_0330",
+        "BBDC4_ITR_2023-06-30_1_0329",
+        "BBDC4_ITR_2023-06-30_1_0331"
+      ]
+    },
+    {
+      "query": "Qual a classificação de risco ASG do Banco do Brasil pela Sustainalytics?",
+      "query_type": "factual",
+      "filing_id": "BBAS3_DFP_2023-12-31_1",
+      "anchor_chunk_id": "BBAS3_DFP_2023-12-31_1_0058",
+      "relevant_chunk_ids": [
+        "BBAS3_DFP_2023-12-31_1_0058",
+        "BBAS3_DFP_2023-12-31_1_0057",
+        "BBAS3_DFP_2023-12-31_1_0059"
+      ]
+    },
+    {
+      "query": "Qual foi a evolução do custo financeiro médio mensal dos convênios de fornecedores entre 31 de dezembro de 2022 e 31 de dezembro de 2023?",
+      "query_type": "temporal",
+      "filing_id": "BEEF3_DFP_2023-12-31_1",
+      "anchor_chunk_id": "BEEF3_DFP_2023-12-31_1_0119",
+      "relevant_chunk_ids": [
+        "BEEF3_DFP_2023-12-31_1_0119",
+        "BEEF3_DFP_2023-12-31_1_0118",
+        "BEEF3_DFP_2023-12-31_1_0120"
+      ]
+    },
+    {
+      "query": "Qual era o valor de \"Títulos e valores mobiliários\" da controladora da CMIG4 em 31 de dezembro de 2024?",
+      "query_type": "factual",
+      "filing_id": "CMIG4_ITR_2025-06-30_1",
+      "anchor_chunk_id": "CMIG4_ITR_2025-06-30_1_0029",
+      "relevant_chunk_ids": [
+        "CMIG4_ITR_2025-06-30_1_0029",
+        "CMIG4_ITR_2025-06-30_1_0028",
+        "CMIG4_ITR_2025-06-30_1_0030"
+      ]
+    },
+    {
+      "query": "Quem aprovou a Política para Transações com Partes Relacionadas do Santander?",
+      "query_type": "factual",
+      "filing_id": "SANB11_ITR_2023-03-31_1",
+      "anchor_chunk_id": "SANB11_ITR_2023-03-31_1_0228",
+      "relevant_chunk_ids": [
+        "SANB11_ITR_2023-03-31_1_0228",
+        "SANB11_ITR_2023-03-31_1_0227",
+        "SANB11_ITR_2023-03-31_1_0229"
+      ]
+    },
+    {
+      "query": "Como a CMIN3 aborda a avaliação de incertezas sobre tratamentos fiscais e o gerenciamento de seus passivos contingentes?",
+      "query_type": "thematic",
+      "filing_id": "CMIN3_ITR_2023-03-31_1",
+      "anchor_chunk_id": "CMIN3_ITR_2023-03-31_1_0063",
+      "relevant_chunk_ids": [
+        "CMIN3_ITR_2023-03-31_1_0063",
+        "CMIN3_ITR_2023-03-31_1_0062",
+        "CMIN3_ITR_2023-03-31_1_0064"
+      ]
+    },
+    {
+      "query": "Como a TOTVS aborda a contabilização e divulgação de segmentos de negócios com mudanças estratégicas, como operações descontinuadas e o impacto de aquisições?",
+      "query_type": "thematic",
+      "filing_id": "TOTS3_ITR_2023-09-30_1",
+      "anchor_chunk_id": "TOTS3_ITR_2023-09-30_1_0036",
+      "relevant_chunk_ids": [
+        "TOTS3_ITR_2023-09-30_1_0036",
+        "TOTS3_ITR_2023-09-30_1_0035",
+        "TOTS3_ITR_2023-09-30_1_0037"
+      ]
+    },
+    {
+      "query": "Qual a abordagem da empresa na gestão de suas obrigações financeiras, incluindo a estrutura da dívida, a liquidez e a conformidade com covenants e obrigações fiscais?",
+      "query_type": "thematic",
+      "filing_id": "JBSS3_ITR_2025-06-30_1",
+      "anchor_chunk_id": "JBSS3_ITR_2025-06-30_1_0046",
+      "relevant_chunk_ids": [
+        "JBSS3_ITR_2025-06-30_1_0046",
+        "JBSS3_ITR_2025-06-30_1_0045",
+        "JBSS3_ITR_2025-06-30_1_0047"
+      ]
+    },
+    {
+      "query": "Como o Total do resultado abrangente ajustado em 30/06/2023 se compara com o valor reapresentado para o período comparativo?",
+      "query_type": "comparative",
+      "filing_id": "RDOR3_ITR_2023-06-30_2",
+      "anchor_chunk_id": "RDOR3_ITR_2023-06-30_2_0025",
+      "relevant_chunk_ids": [
+        "RDOR3_ITR_2023-06-30_2_0025",
+        "RDOR3_ITR_2023-06-30_2_0024",
+        "RDOR3_ITR_2023-06-30_2_0026"
+      ]
+    },
+    {
+      "query": "Qual é a estratégia geral do Banco do Brasil para integrar a sustentabilidade e as questões ASG em suas operações e negócios?",
+      "query_type": "thematic",
+      "filing_id": "BBAS3_ITR_2024-06-30_1",
+      "anchor_chunk_id": "BBAS3_ITR_2024-06-30_1_0031",
+      "relevant_chunk_ids": [
+        "BBAS3_ITR_2024-06-30_1_0031",
+        "BBAS3_ITR_2024-06-30_1_0030",
+        "BBAS3_ITR_2024-06-30_1_0032"
+      ]
+    },
+    {
+      "query": "O investimento do Itaú Unibanco Holding em gerenciamento de riscos e capital é uma iniciativa contínua ou pontual?",
+      "query_type": "temporal",
+      "filing_id": "ITUB4_DFP_2022-12-31_1",
+      "anchor_chunk_id": "ITUB4_DFP_2022-12-31_1_0327",
+      "relevant_chunk_ids": [
+        "ITUB4_DFP_2022-12-31_1_0327",
+        "ITUB4_DFP_2022-12-31_1_0326",
+        "ITUB4_DFP_2022-12-31_1_0328"
+      ]
+    },
+    {
+      "query": "Como a IRBR3 estrutura seus contratos de resseguro e retrocessão e quais os impactos financeiros dessas atividades no seu balanço patrimonial?",
+      "query_type": "thematic",
+      "filing_id": "IRBR3_ITR_2025-09-30_1",
+      "anchor_chunk_id": "IRBR3_ITR_2025-09-30_1_0121",
+      "relevant_chunk_ids": [
+        "IRBR3_ITR_2025-09-30_1_0121",
+        "IRBR3_ITR_2025-09-30_1_0120",
+        "IRBR3_ITR_2025-09-30_1_0122"
+      ]
+    },
+    {
+      "query": "Como os saldos totais das provisões para contingências da Controladora evoluíram entre 31 de dezembro de 2021 e 30 de junho de 2023?",
+      "query_type": "temporal",
+      "filing_id": "RDOR3_ITR_2023-06-30_1",
+      "anchor_chunk_id": "RDOR3_ITR_2023-06-30_1_0086",
+      "relevant_chunk_ids": [
+        "RDOR3_ITR_2023-06-30_1_0086",
+        "RDOR3_ITR_2023-06-30_1_0085",
+        "RDOR3_ITR_2023-06-30_1_0087"
+      ]
+    },
+    {
+      "query": "Qual o valor dos recebíveis de bonificações compensados com saldos de contas a pagar na Controladora em 31 de dezembro de 2023?",
+      "query_type": "factual",
+      "filing_id": "MGLU3_ITR_2024-09-30_1",
+      "anchor_chunk_id": "MGLU3_ITR_2024-09-30_1_0063",
+      "relevant_chunk_ids": [
+        "MGLU3_ITR_2024-09-30_1_0063",
+        "MGLU3_ITR_2024-09-30_1_0062",
+        "MGLU3_ITR_2024-09-30_1_0064"
+      ]
+    },
+    {
+      "query": "Em 2022, qual foi a média da produção operada recorde anual alcançada pela Petrobras?",
+      "query_type": "factual",
+      "filing_id": "PETR4_DFP_2022-12-31_1",
+      "anchor_chunk_id": "PETR4_DFP_2022-12-31_1_0006",
+      "relevant_chunk_ids": [
+        "PETR4_DFP_2022-12-31_1_0006",
+        "PETR4_DFP_2022-12-31_1_0005",
+        "PETR4_DFP_2022-12-31_1_0007"
+      ]
+    },
+    {
+      "query": "Qual o primeiro número de cinco dígitos que aparece no trecho?",
+      "query_type": "factual",
+      "filing_id": "EMBR3_ITR_2025-09-30_1",
+      "anchor_chunk_id": "EMBR3_ITR_2025-09-30_1_0062",
+      "relevant_chunk_ids": [
+        "EMBR3_ITR_2025-09-30_1_0062",
+        "EMBR3_ITR_2025-09-30_1_0061",
+        "EMBR3_ITR_2025-09-30_1_0063"
+      ]
+    },
+    {
+      "query": "Quanto as Outras Despesas Operacionais somaram no 3T23 para o Grupo Petz?",
+      "query_type": "factual",
+      "filing_id": "PETZ3_ITR_2023-09-30_1",
+      "anchor_chunk_id": "PETZ3_ITR_2023-09-30_1_0023",
+      "relevant_chunk_ids": [
+        "PETZ3_ITR_2023-09-30_1_0023",
+        "PETZ3_ITR_2023-09-30_1_0022",
+        "PETZ3_ITR_2023-09-30_1_0024"
+      ]
+    },
+    {
+      "query": "Qual a estratégia da Ambev para gerenciar suas disputas tributárias relativas ao IPI suspenso, e quais foram os resultados recentes dessa abordagem?",
+      "query_type": "thematic",
+      "filing_id": "ABEV3_ITR_2024-06-30_1",
+      "anchor_chunk_id": "ABEV3_ITR_2024-06-30_1_0110",
+      "relevant_chunk_ids": [
+        "ABEV3_ITR_2024-06-30_1_0110",
+        "ABEV3_ITR_2024-06-30_1_0109",
+        "ABEV3_ITR_2024-06-30_1_0111"
+      ]
+    },
+    {
+      "query": "Qual foi a Margem Bruta da Business Performance no terceiro trimestre de 2023?",
+      "query_type": "factual",
+      "filing_id": "TOTS3_ITR_2023-09-30_1",
+      "anchor_chunk_id": "TOTS3_ITR_2023-09-30_1_0010",
+      "relevant_chunk_ids": [
+        "TOTS3_ITR_2023-09-30_1_0010",
+        "TOTS3_ITR_2023-09-30_1_0009",
+        "TOTS3_ITR_2023-09-30_1_0011"
+      ]
+    },
+    {
+      "query": "Qual a extensão da evidência de auditoria obtida em relação às demonstrações financeiras individuais comparada às consolidadas?",
+      "query_type": "comparative",
+      "filing_id": "VIVT3_DFP_2022-12-31_1",
+      "anchor_chunk_id": "VIVT3_DFP_2022-12-31_1_0245",
+      "relevant_chunk_ids": [
+        "VIVT3_DFP_2022-12-31_1_0245",
+        "VIVT3_DFP_2022-12-31_1_0244",
+        "VIVT3_DFP_2022-12-31_1_0246"
+      ]
+    },
+    {
+      "query": "Quais são as principais estratégias de hedge da Minerva S.A. e seus respectivos objetivos?",
+      "query_type": "thematic",
+      "filing_id": "BEEF3_ITR_2024-03-31_1",
+      "anchor_chunk_id": "BEEF3_ITR_2024-03-31_1_0136",
+      "relevant_chunk_ids": [
+        "BEEF3_ITR_2024-03-31_1_0136",
+        "BEEF3_ITR_2024-03-31_1_0135",
+        "BEEF3_ITR_2024-03-31_1_0137"
+      ]
+    },
+    {
+      "query": "Quais foram as principais estratégias de reestruturação e otimização do portfólio de negócios da TOTVS no período?",
+      "query_type": "thematic",
+      "filing_id": "TOTS3_ITR_2024-06-30_1",
+      "anchor_chunk_id": "TOTS3_ITR_2024-06-30_1_0027",
+      "relevant_chunk_ids": [
+        "TOTS3_ITR_2024-06-30_1_0027",
+        "TOTS3_ITR_2024-06-30_1_0026",
+        "TOTS3_ITR_2024-06-30_1_0028"
+      ]
+    },
+    {
+      "query": "Qual foi o valor da reversão (perda) no valor de recuperação de ativos - Impairment consolidado em 2023?",
+      "query_type": "factual",
+      "filing_id": "PETR4_DFP_2023-12-31_2",
+      "anchor_chunk_id": "PETR4_DFP_2023-12-31_2_0247",
+      "relevant_chunk_ids": [
+        "PETR4_DFP_2023-12-31_2_0247",
+        "PETR4_DFP_2023-12-31_2_0246",
+        "PETR4_DFP_2023-12-31_2_0248"
+      ]
+    },
+    {
+      "query": "Qual foi o maior volume de Energia Natural Afluente (ENA) registrado desde o início da série histórica do ONS?",
+      "query_type": "factual",
+      "filing_id": "ENEV3_ITR_2024-06-30_2",
+      "anchor_chunk_id": "ENEV3_ITR_2024-06-30_2_0009",
+      "relevant_chunk_ids": [
+        "ENEV3_ITR_2024-06-30_2_0009",
+        "ENEV3_ITR_2024-06-30_2_0008",
+        "ENEV3_ITR_2024-06-30_2_0010"
+      ]
+    },
+    {
+      "query": "Como a participação acionária da Santander Corretora na Webmotors S.A. se modificou após a conclusão da operação de venda em abril de 2023?",
+      "query_type": "temporal",
+      "filing_id": "SANB11_ITR_2024-06-30_3",
+      "anchor_chunk_id": "SANB11_ITR_2024-06-30_3_0200",
+      "relevant_chunk_ids": [
+        "SANB11_ITR_2024-06-30_3_0200",
+        "SANB11_ITR_2024-06-30_3_0199",
+        "SANB11_ITR_2024-06-30_3_0201"
+      ]
+    },
+    {
+      "query": "O que a composição detalhada do ágio da HAPV3 revela sobre sua estratégia de crescimento e consolidação no setor de saúde?",
+      "query_type": "thematic",
+      "filing_id": "HAPV3_ITR_2025-09-30_1",
+      "anchor_chunk_id": "HAPV3_ITR_2025-09-30_1_0071",
+      "relevant_chunk_ids": [
+        "HAPV3_ITR_2025-09-30_1_0071",
+        "HAPV3_ITR_2025-09-30_1_0070",
+        "HAPV3_ITR_2025-09-30_1_0072"
+      ]
+    },
+    {
+      "query": "Qual foi o valor do ajuste de valor justo do imobilizado da Companhia?",
+      "query_type": "factual",
+      "filing_id": "BEEF3_ITR_2023-06-30_1",
+      "anchor_chunk_id": "BEEF3_ITR_2023-06-30_1_0045",
+      "relevant_chunk_ids": [
+        "BEEF3_ITR_2023-06-30_1_0045",
+        "BEEF3_ITR_2023-06-30_1_0044",
+        "BEEF3_ITR_2023-06-30_1_0046"
+      ]
+    },
+    {
+      "query": "Quais foram os principais fatores que influenciaram o desempenho do EBITDA ajustado nas diferentes regiões de atuação da empresa no 1T25?",
+      "query_type": "thematic",
+      "filing_id": "EQTL3_ITR_2025-03-31_1",
+      "anchor_chunk_id": "EQTL3_ITR_2025-03-31_1_0029",
+      "relevant_chunk_ids": [
+        "EQTL3_ITR_2025-03-31_1_0029",
+        "EQTL3_ITR_2025-03-31_1_0028",
+        "EQTL3_ITR_2025-03-31_1_0030"
+      ]
+    },
+    {
+      "query": "Qual foi a receita de exportação em USD objeto de hedge em 30 de setembro de 2024?",
+      "query_type": "factual",
+      "filing_id": "KLBN11_ITR_2024-09-30_2",
+      "anchor_chunk_id": "KLBN11_ITR_2024-09-30_2_0149",
+      "relevant_chunk_ids": [
+        "KLBN11_ITR_2024-09-30_2_0149",
+        "KLBN11_ITR_2024-09-30_2_0148",
+        "KLBN11_ITR_2024-09-30_2_0150"
+      ]
+    },
+    {
+      "query": "Qual é a porcentagem da participação da CSN Mineração no capital social total da MRS?",
+      "query_type": "factual",
+      "filing_id": "CMIN3_DFP_2023-12-31_2",
+      "anchor_chunk_id": "CMIN3_DFP_2023-12-31_2_0009",
+      "relevant_chunk_ids": [
+        "CMIN3_DFP_2023-12-31_2_0009",
+        "CMIN3_DFP_2023-12-31_2_0008",
+        "CMIN3_DFP_2023-12-31_2_0010"
+      ]
+    },
+    {
+      "query": "Qual a abordagem da LREN3 para a conformidade com as novas normas contábeis e regulamentações que afetam suas demonstrações financeiras e a divulgação de informações, incluindo aspectos de sustentabilidade?",
+      "query_type": "thematic",
+      "filing_id": "LREN3_ITR_2025-06-30_1",
+      "anchor_chunk_id": "LREN3_ITR_2025-06-30_1_0028",
+      "relevant_chunk_ids": [
+        "LREN3_ITR_2025-06-30_1_0028",
+        "LREN3_ITR_2025-06-30_1_0027",
+        "LREN3_ITR_2025-06-30_1_0029"
+      ]
+    },
+    {
+      "query": "Qual a diferença no tipo de garantia exigida para as linhas de crédito FINAME do BNDES em comparação com outros empréstimos e financiamentos contratados pela Companhia?",
+      "query_type": "comparative",
+      "filing_id": "ABEV3_DFP_2023-12-31_1",
+      "anchor_chunk_id": "ABEV3_DFP_2023-12-31_1_0144",
+      "relevant_chunk_ids": [
+        "ABEV3_DFP_2023-12-31_1_0144",
+        "ABEV3_DFP_2023-12-31_1_0143",
+        "ABEV3_DFP_2023-12-31_1_0145"
+      ]
+    },
+    {
+      "query": "Qual o valor dos créditos fiscais oriundos de decisões judiciais incluídos em Outras receitas operacionais no exercício findo em 31 de dezembro de 2022?",
+      "query_type": "factual",
+      "filing_id": "VIVT3_DFP_2022-12-31_2",
+      "anchor_chunk_id": "VIVT3_DFP_2022-12-31_2_0178",
+      "relevant_chunk_ids": [
+        "VIVT3_DFP_2022-12-31_2_0178",
+        "VIVT3_DFP_2022-12-31_2_0177",
+        "VIVT3_DFP_2022-12-31_2_0179"
+      ]
+    },
+    {
+      "query": "Quais são as principais estratégias e obrigações da Companhia relacionadas à expansão de rede e conectividade resultantes dos leilões de radiofrequência?",
+      "query_type": "thematic",
+      "filing_id": "VIVT3_DFP_2022-12-31_1",
+      "anchor_chunk_id": "VIVT3_DFP_2022-12-31_1_0108",
+      "relevant_chunk_ids": [
+        "VIVT3_DFP_2022-12-31_1_0108",
+        "VIVT3_DFP_2022-12-31_1_0107",
+        "VIVT3_DFP_2022-12-31_1_0109"
+      ]
+    },
+    {
+      "query": "Quais os valores dos adiantamentos recebidos pelas controladas Itaqui e Pecém II na operação de cessão parcial de direitos creditórios?",
+      "query_type": "factual",
+      "filing_id": "ENEV3_ITR_2023-09-30_1",
+      "anchor_chunk_id": "ENEV3_ITR_2023-09-30_1_0122",
+      "relevant_chunk_ids": [
+        "ENEV3_ITR_2023-09-30_1_0122",
+        "ENEV3_ITR_2023-09-30_1_0121",
+        "ENEV3_ITR_2023-09-30_1_0123"
+      ]
+    },
+    {
+      "query": "Qual foi o valor justo por ação da Multiplan em junho de 2024?",
+      "query_type": "factual",
+      "filing_id": "MULT3_ITR_2024-06-30_1",
+      "anchor_chunk_id": "MULT3_ITR_2024-06-30_1_0051",
+      "relevant_chunk_ids": [
+        "MULT3_ITR_2024-06-30_1_0051",
+        "MULT3_ITR_2024-06-30_1_0050",
+        "MULT3_ITR_2024-06-30_1_0052"
+      ]
+    },
+    {
+      "query": "Qual é o número CRC do contador da CPLE6?",
+      "query_type": "factual",
+      "filing_id": "CPLE6_ITR_2025-09-30_1",
+      "anchor_chunk_id": "CPLE6_ITR_2025-09-30_1_0008",
+      "relevant_chunk_ids": [
+        "CPLE6_ITR_2025-09-30_1_0008",
+        "CPLE6_ITR_2025-09-30_1_0007"
+      ]
+    },
+    {
+      "query": "Como o número total de Ações Restritas outorgadas no Plano 1 se compara ao número outorgado no Plano 2?",
+      "query_type": "comparative",
+      "filing_id": "MULT3_ITR_2025-03-31_2",
+      "anchor_chunk_id": "MULT3_ITR_2025-03-31_2_0149",
+      "relevant_chunk_ids": [
+        "MULT3_ITR_2025-03-31_2_0149",
+        "MULT3_ITR_2025-03-31_2_0148",
+        "MULT3_ITR_2025-03-31_2_0150"
+      ]
+    },
+    {
+      "query": "Qual a diferença na avaliação de impacto entre as alterações que entraram em vigor em 1º de janeiro de 2025 e as emendas do IFRS 9 e IFRS 7 sobre Classificação e Mensuração de Instrumentos Financeiros?",
+      "query_type": "comparative",
+      "filing_id": "BBDC4_ITR_2025-09-30_1",
+      "anchor_chunk_id": "BBDC4_ITR_2025-09-30_1_0121",
+      "relevant_chunk_ids": [
+        "BBDC4_ITR_2025-09-30_1_0121",
+        "BBDC4_ITR_2025-09-30_1_0120",
+        "BBDC4_ITR_2025-09-30_1_0122"
+      ]
+    },
+    {
+      "query": "Qual é a frequência de comunicação e reporte da área de Risco Operacional & Controle Interno para a Administração, por meio do Comitê Integrado de Riscos Operacionais (FSCIRO) e Reunião de RO?",
+      "query_type": "factual",
+      "filing_id": "SANB11_DFP_2023-12-31_2",
+      "anchor_chunk_id": "SANB11_DFP_2023-12-31_2_0448",
+      "relevant_chunk_ids": [
+        "SANB11_DFP_2023-12-31_2_0448",
+        "SANB11_DFP_2023-12-31_2_0447",
+        "SANB11_DFP_2023-12-31_2_0449"
+      ]
+    },
+    {
+      "query": "Como o valor de W rXr rXr no período 3J6 se compara ao valor no período 3/6?",
+      "query_type": "comparative",
+      "filing_id": "EQTL3_ITR_2025-09-30_1",
+      "anchor_chunk_id": "EQTL3_ITR_2025-09-30_1_0184",
+      "relevant_chunk_ids": [
+        "EQTL3_ITR_2025-09-30_1_0184",
+        "EQTL3_ITR_2025-09-30_1_0183",
+        "EQTL3_ITR_2025-09-30_1_0185"
+      ]
+    },
+    {
+      "query": "Quais os componentes principais que a SANB11 detalha em suas demonstrações financeiras para explicar seu desempenho operacional e não operacional?",
+      "query_type": "thematic",
+      "filing_id": "SANB11_ITR_2024-06-30_2",
+      "anchor_chunk_id": "SANB11_ITR_2024-06-30_2_0128",
+      "relevant_chunk_ids": [
+        "SANB11_ITR_2024-06-30_2_0128",
+        "SANB11_ITR_2024-06-30_2_0127",
+        "SANB11_ITR_2024-06-30_2_0129"
+      ]
+    },
+    {
+      "query": "A partir de que data o saldo de unidades de investimento não resgatadas foi reportado como inexistente?",
+      "query_type": "temporal",
+      "filing_id": "MULT3_ITR_2025-03-31_2",
+      "anchor_chunk_id": "MULT3_ITR_2025-03-31_2_0147",
+      "relevant_chunk_ids": [
+        "MULT3_ITR_2025-03-31_2_0147",
+        "MULT3_ITR_2025-03-31_2_0146",
+        "MULT3_ITR_2025-03-31_2_0148"
+      ]
+    },
+    {
+      "query": "Qual foi a produção média de barris de óleo equivalente por dia da Companhia no primeiro trimestre de 2023?",
+      "query_type": "factual",
+      "filing_id": "RECV3_ITR_2023-03-31_1",
+      "anchor_chunk_id": "RECV3_ITR_2023-03-31_1_0010",
+      "relevant_chunk_ids": [
+        "RECV3_ITR_2023-03-31_1_0010",
+        "RECV3_ITR_2023-03-31_1_0009",
+        "RECV3_ITR_2023-03-31_1_0011"
+      ]
+    },
+    {
+      "query": "Quantas toneladas/útil a FTL transportou em 2022?",
+      "query_type": "factual",
+      "filing_id": "CSNA3_DFP_2022-12-31_1",
+      "anchor_chunk_id": "CSNA3_DFP_2022-12-31_1_0012",
+      "relevant_chunk_ids": [
+        "CSNA3_DFP_2022-12-31_1_0012",
+        "CSNA3_DFP_2022-12-31_1_0011",
+        "CSNA3_DFP_2022-12-31_1_0013"
+      ]
+    },
+    {
+      "query": "Até que momento do ano de 2025 as demonstrações financeiras da CMIG4 abrangem, permitindo uma análise da evolução até essa data?",
+      "query_type": "temporal",
+      "filing_id": "CMIG4_ITR_2025-06-30_1",
+      "anchor_chunk_id": "CMIG4_ITR_2025-06-30_1_0028",
+      "relevant_chunk_ids": [
+        "CMIG4_ITR_2025-06-30_1_0028",
+        "CMIG4_ITR_2025-06-30_1_0029"
+      ]
+    },
+    {
+      "query": "Quais as categorias de créditos tributários, previdenciários e outros valores a receber que a IRBR3 reporta?",
+      "query_type": "thematic",
+      "filing_id": "IRBR3_ITR_2024-06-30_2",
+      "anchor_chunk_id": "IRBR3_ITR_2024-06-30_2_0081",
+      "relevant_chunk_ids": [
+        "IRBR3_ITR_2024-06-30_2_0081",
+        "IRBR3_ITR_2024-06-30_2_0080",
+        "IRBR3_ITR_2024-06-30_2_0082"
+      ]
+    },
+    {
+      "query": "Como evoluiu o valor de \"Adiantamento e Outros créditos com partes relacionadas\" da CMIN3 entre 31 de dezembro de 2023 e 31 de março de 2024?",
+      "query_type": "temporal",
+      "filing_id": "CMIN3_ITR_2024-03-31_1",
+      "anchor_chunk_id": "CMIN3_ITR_2024-03-31_1_0017",
+      "relevant_chunk_ids": [
+        "CMIN3_ITR_2024-03-31_1_0017",
+        "CMIN3_ITR_2024-03-31_1_0016",
+        "CMIN3_ITR_2024-03-31_1_0018"
+      ]
+    },
+    {
+      "query": "Que tema de responsabilidade da alta gestão sobre a fidedignidade das informações financeiras é abordado na declaração dos diretores da Petrobras?",
+      "query_type": "thematic",
+      "filing_id": "PETR4_ITR_2023-06-30_1",
+      "anchor_chunk_id": "PETR4_ITR_2023-06-30_1_0052",
+      "relevant_chunk_ids": [
+        "PETR4_ITR_2023-06-30_1_0052",
+        "PETR4_ITR_2023-06-30_1_0051"
+      ]
+    },
+    {
+      "query": "Como o passivo total consolidado de benefícios a empregados da PETR4 se alterou entre 31 de dezembro de 2021 e 31 de dezembro de 2022?",
+      "query_type": "temporal",
+      "filing_id": "PETR4_DFP_2022-12-31_1",
+      "anchor_chunk_id": "PETR4_DFP_2022-12-31_1_0168",
+      "relevant_chunk_ids": [
+        "PETR4_DFP_2022-12-31_1_0168",
+        "PETR4_DFP_2022-12-31_1_0167",
+        "PETR4_DFP_2022-12-31_1_0169"
+      ]
+    },
+    {
+      "query": "Qual prática contábil a Administração adotou para o registro do valor contábil do ativo recebido em combinações de negócios entre entidades sob controle comum?",
+      "query_type": "factual",
+      "filing_id": "ABEV3_DFP_2022-12-31_1",
+      "anchor_chunk_id": "ABEV3_DFP_2022-12-31_1_0074",
+      "relevant_chunk_ids": [
+        "ABEV3_DFP_2022-12-31_1_0074",
+        "ABEV3_DFP_2022-12-31_1_0073",
+        "ABEV3_DFP_2022-12-31_1_0075"
+      ]
+    },
+    {
+      "query": "Qual a diferença do primeiro valor numérico apresentado entre a Cia Saúde – SulAmérica e a Traditio Companhia de Seguros?",
+      "query_type": "comparative",
+      "filing_id": "RDOR3_ITR_2023-09-30_2",
+      "anchor_chunk_id": "RDOR3_ITR_2023-09-30_2_0060",
+      "relevant_chunk_ids": [
+        "RDOR3_ITR_2023-09-30_2_0060",
+        "RDOR3_ITR_2023-09-30_2_0059",
+        "RDOR3_ITR_2023-09-30_2_0061"
+      ]
+    },
+    {
+      "query": "Como o valor consolidado de \"Contas a pagar – Obrigações contratuais\" em 31/03/2023 se compara ao de 31/03/2022?",
+      "query_type": "comparative",
+      "filing_id": "HAPV3_ITR_2023-03-31_1",
+      "anchor_chunk_id": "HAPV3_ITR_2023-03-31_1_0120",
+      "relevant_chunk_ids": [
+        "HAPV3_ITR_2023-03-31_1_0120",
+        "HAPV3_ITR_2023-03-31_1_0119",
+        "HAPV3_ITR_2023-03-31_1_0121"
+      ]
+    },
+    {
+      "query": "Comparando as deliberações de JCP de 2022, qual foi o montante bruto maior: o aprovado em 21 de dezembro ou em 22 de setembro?",
+      "query_type": "comparative",
+      "filing_id": "MULT3_DFP_2023-12-31_1",
+      "anchor_chunk_id": "MULT3_DFP_2023-12-31_1_0189",
+      "relevant_chunk_ids": [
+        "MULT3_DFP_2023-12-31_1_0189",
+        "MULT3_DFP_2023-12-31_1_0188",
+        "MULT3_DFP_2023-12-31_1_0190"
+      ]
+    },
+    {
+      "query": "Como a ALPA4 estrutura e gerencia seus ativos intangíveis, considerando suas diferentes categorias e movimentações?",
+      "query_type": "thematic",
+      "filing_id": "ALPA4_DFP_2022-12-31_3",
+      "anchor_chunk_id": "ALPA4_DFP_2022-12-31_3_0083",
+      "relevant_chunk_ids": [
+        "ALPA4_DFP_2022-12-31_3_0083",
+        "ALPA4_DFP_2022-12-31_3_0082",
+        "ALPA4_DFP_2022-12-31_3_0084"
+      ]
+    },
+    {
+      "query": "Qual foi o saldo total de \"Direito de uso em arrendamento\" da Controladora em 30 de junho de 2023?",
+      "query_type": "factual",
+      "filing_id": "BEEF3_ITR_2023-06-30_1",
+      "anchor_chunk_id": "BEEF3_ITR_2023-06-30_1_0086",
+      "relevant_chunk_ids": [
+        "BEEF3_ITR_2023-06-30_1_0086",
+        "BEEF3_ITR_2023-06-30_1_0085",
+        "BEEF3_ITR_2023-06-30_1_0087"
+      ]
+    },
+    {
+      "query": "Qual foi o montante das contribuições pagas pela Companhia para o plano em 2023?",
+      "query_type": "factual",
+      "filing_id": "IRBR3_ITR_2023-06-30_2",
+      "anchor_chunk_id": "IRBR3_ITR_2023-06-30_2_0146",
+      "relevant_chunk_ids": [
+        "IRBR3_ITR_2023-06-30_2_0146",
+        "IRBR3_ITR_2023-06-30_2_0145",
+        "IRBR3_ITR_2023-06-30_2_0147"
+      ]
+    },
+    {
+      "query": "Quando ocorrem as provisões mensais, o adiantamento e o pagamento residual da participação nos lucros e resultados aos empregados da EMBR3?",
+      "query_type": "temporal",
+      "filing_id": "EMBR3_DFP_2022-12-31_1",
+      "anchor_chunk_id": "EMBR3_DFP_2022-12-31_1_0147",
+      "relevant_chunk_ids": [
+        "EMBR3_DFP_2022-12-31_1_0147",
+        "EMBR3_DFP_2022-12-31_1_0146",
+        "EMBR3_DFP_2022-12-31_1_0148"
+      ]
+    },
+    {
+      "query": "Em qual data as demonstrações contábeis individuais e consolidadas do Banco do Brasil foram aprovadas e autorizadas para emissão?",
+      "query_type": "factual",
+      "filing_id": "BBAS3_ITR_2023-09-30_1",
+      "anchor_chunk_id": "BBAS3_ITR_2023-09-30_1_0084",
+      "relevant_chunk_ids": [
+        "BBAS3_ITR_2023-09-30_1_0084",
+        "BBAS3_ITR_2023-09-30_1_0083",
+        "BBAS3_ITR_2023-09-30_1_0085"
+      ]
+    },
+    {
+      "query": "De que maneira a Embraer fortalece sua cultura interna para impulsionar o crescimento e a inovação em suas operações?",
+      "query_type": "thematic",
+      "filing_id": "EMBR3_DFP_2023-12-31_1",
+      "anchor_chunk_id": "EMBR3_DFP_2023-12-31_1_0005",
+      "relevant_chunk_ids": [
+        "EMBR3_DFP_2023-12-31_1_0005",
+        "EMBR3_DFP_2023-12-31_1_0004",
+        "EMBR3_DFP_2023-12-31_1_0006"
+      ]
+    },
+    {
+      "query": "Qual o valor de mercado das ações em tesouraria em 31 de março de 2023 em comparação com 31 de dezembro de 2022?",
+      "query_type": "comparative",
+      "filing_id": "RADL3_ITR_2023-03-31_1",
+      "anchor_chunk_id": "RADL3_ITR_2023-03-31_1_0097",
+      "relevant_chunk_ids": [
+        "RADL3_ITR_2023-03-31_1_0097",
+        "RADL3_ITR_2023-03-31_1_0096",
+        "RADL3_ITR_2023-03-31_1_0098"
+      ]
+    },
+    {
+      "query": "Qual o valor total de financiamentos rurais e agroindustriais em 31 de dezembro de 2022?",
+      "query_type": "factual",
+      "filing_id": "BBDC4_DFP_2022-12-31_1",
+      "anchor_chunk_id": "BBDC4_DFP_2022-12-31_1_0105",
+      "relevant_chunk_ids": [
+        "BBDC4_DFP_2022-12-31_1_0105",
+        "BBDC4_DFP_2022-12-31_1_0104",
+        "BBDC4_DFP_2022-12-31_1_0106"
+      ]
+    },
+    {
+      "query": "Quais as diferenças entre os temas de particular interesse do COAUD na análise dos recursos da Auditoria Interna para 2023 e as áreas de controle interno avaliadas na efetividade dos trabalhos da Auditoria Interna?",
+      "query_type": "comparative",
+      "filing_id": "BBDC4_DFP_2023-12-31_1",
+      "anchor_chunk_id": "BBDC4_DFP_2023-12-31_1_0455",
+      "relevant_chunk_ids": [
+        "BBDC4_DFP_2023-12-31_1_0455",
+        "BBDC4_DFP_2023-12-31_1_0454",
+        "BBDC4_DFP_2023-12-31_1_0456"
+      ]
+    },
+    {
+      "query": "Qual foi a evolução do total de investimentos na controladora consolidado entre 31 de dezembro de 2023 e 31 de março de 2024?",
+      "query_type": "temporal",
+      "filing_id": "VIVT3_ITR_2025-03-31_1",
+      "anchor_chunk_id": "VIVT3_ITR_2025-03-31_1_0047",
+      "relevant_chunk_ids": [
+        "VIVT3_ITR_2025-03-31_1_0047",
+        "VIVT3_ITR_2025-03-31_1_0046",
+        "VIVT3_ITR_2025-03-31_1_0048"
+      ]
+    },
+    {
+      "query": "Qual foi o saldo líquido total em 31/12/2022?",
+      "query_type": "factual",
+      "filing_id": "MULT3_DFP_2022-12-31_1",
+      "anchor_chunk_id": "MULT3_DFP_2022-12-31_1_0086",
+      "relevant_chunk_ids": [
+        "MULT3_DFP_2022-12-31_1_0086",
+        "MULT3_DFP_2022-12-31_1_0085",
+        "MULT3_DFP_2022-12-31_1_0087"
+      ]
+    },
+    {
+      "query": "Como as tarifas e comissões pela originação de empréstimos a clientes são reconhecidas no resultado pelas instituições financeiras no Brasil, segundo suas práticas contábeis?",
+      "query_type": "factual",
+      "filing_id": "BBAS3_ITR_2024-09-30_1",
+      "anchor_chunk_id": "BBAS3_ITR_2024-09-30_1_0376",
+      "relevant_chunk_ids": [
+        "BBAS3_ITR_2024-09-30_1_0376",
+        "BBAS3_ITR_2024-09-30_1_0375",
+        "BBAS3_ITR_2024-09-30_1_0377"
+      ]
+    },
+    {
+      "query": "Por quem o indicador kg CO2e/CWT foi desenvolvido?",
+      "query_type": "factual",
+      "filing_id": "PETR4_DFP_2023-12-31_1",
+      "anchor_chunk_id": "PETR4_DFP_2023-12-31_1_0078",
+      "relevant_chunk_ids": [
+        "PETR4_DFP_2023-12-31_1_0078",
+        "PETR4_DFP_2023-12-31_1_0077",
+        "PETR4_DFP_2023-12-31_1_0079"
+      ]
+    },
+    {
+      "query": "Em quais países a BRF possui subsidiárias consideradas de economia hiperinflacionária?",
+      "query_type": "factual",
+      "filing_id": "BRFS3_DFP_2022-12-31_1",
+      "anchor_chunk_id": "BRFS3_DFP_2022-12-31_1_0057",
+      "relevant_chunk_ids": [
+        "BRFS3_DFP_2022-12-31_1_0057",
+        "BRFS3_DFP_2022-12-31_1_0056",
+        "BRFS3_DFP_2022-12-31_1_0058"
+      ]
+    },
+    {
+      "query": "Qual foi o valor total das Despesas Operacionais da BRFS3 no 4T24?",
+      "query_type": "factual",
+      "filing_id": "BRFS3_DFP_2024-12-31_1",
+      "anchor_chunk_id": "BRFS3_DFP_2024-12-31_1_0024",
+      "relevant_chunk_ids": [
+        "BRFS3_DFP_2024-12-31_1_0024",
+        "BRFS3_DFP_2024-12-31_1_0023",
+        "BRFS3_DFP_2024-12-31_1_0025"
+      ]
+    },
+    {
+      "query": "Como as despesas gerais da SBSP3 variaram do 3T23 para o 3T24, e no acumulado dos nove primeiros meses de 2023 para 2024?",
+      "query_type": "temporal",
+      "filing_id": "SBSP3_ITR_2024-09-30_1",
+      "anchor_chunk_id": "SBSP3_ITR_2024-09-30_1_0115",
+      "relevant_chunk_ids": [
+        "SBSP3_ITR_2024-09-30_1_0115",
+        "SBSP3_ITR_2024-09-30_1_0114",
+        "SBSP3_ITR_2024-09-30_1_0116"
+      ]
+    },
+    {
+      "query": "Qual foi a margem bruta da MRFG3 no 1T23?",
+      "query_type": "factual",
+      "filing_id": "MRFG3_ITR_2023-03-31_1",
+      "anchor_chunk_id": "MRFG3_ITR_2023-03-31_1_0006",
+      "relevant_chunk_ids": [
+        "MRFG3_ITR_2023-03-31_1_0006",
+        "MRFG3_ITR_2023-03-31_1_0005",
+        "MRFG3_ITR_2023-03-31_1_0007"
+      ]
+    }
+  ]
+}

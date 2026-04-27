@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment & secrets
+.env
+.streamlit/secrets.toml
+
+# Data — raw PDFs are too large for git
+data/raw/pdfs/
+
+# Model weights — use HuggingFace Hub instead
+models/sentence_transformer/
+models/sentiment_classifier/*.pt
+models/sentiment_classifier/*.bin
+
+# Vector store — rebuild from embeddings
+vectorstore/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_metadata
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Learning materials — not part of the project
+DOCS/
+
+# Misc
+*.log
+*.tmp

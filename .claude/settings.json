@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python *)",
+      "Bash(pip install *)",
+      "Bash(pytest *)",
+      "Bash(streamlit *)",
+      "Bash(source .venv/bin/activate *)",
+      "Bash(cat *)",
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(grep *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(rm *)",
+      "Bash(touch *)",
+      "Bash(git *)",
+      "Bash(sqlite3 *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Read(*)",
+      "Write(cvm-intelligence/**)"
+    ],
+    "deny": [
+      "Write(DOCS/**)",
+      "Write(.env)",
+      "Write(.streamlit/secrets.toml)"
+    ]
+  }
+}
