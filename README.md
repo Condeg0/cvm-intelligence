@@ -122,6 +122,7 @@ Evaluated on 94 synthetic queries (Gemini-generated) over 97,138 chunks from 623
 - **Epochs:** 10 | **Batch size:** 16 (effective 64 with gradient accumulation) | **fp16**
 - **Training loss:** 2.201 (step 50) → **0.115** (step 2,270)
 - **Hardware:** RTX A1000, ~2 hours
+- **HuggingFace Hub:** [`condeg/cvm-bertimbau-sentence-transformer`](https://huggingface.co/condeg/cvm-bertimbau-sentence-transformer)
 
 ### Sentiment Classifier
 
@@ -179,7 +180,8 @@ cvm-intelligence/
 │   └── run_sentiment_scoring.py  # Classify 97k chunks
 ├── notebooks/             # 6 development notebooks (01–06)
 ├── models/
-│   └── sentence_transformer/  # Fine-tuned BERTimbau weights
+│   └── sentence_transformer/  # Fine-tuned BERTimbau weights (local dev only — gitignored)
+│                              # HuggingFace: condeg/cvm-bertimbau-sentence-transformer
 ├── data/
 │   ├── raw/               # CVM CSVs + PDFs (not committed)
 │   ├── processed/         # Parsed chunks JSON, extracted metrics CSV
@@ -187,6 +189,62 @@ cvm-intelligence/
 │   └── cvm_metrics.db     # SQLite database
 └── vectorstore/
     └── chromadb/          # ChromaDB persistence (~1.8 GB)
+```
+
+---
+
+## Deployment
+
+### Streamlit Community Cloud
+
+The app is designed to deploy with zero code changes. The three data pages (Dashboard, Sentiment, Evaluation) run on the 1 GB free tier. The RAG Query page degrades gracefully when the vector index is not present.
+
+**Step 1 — Fork the repository**
+
+```bash
+# Fork on GitHub, then clone your fork
+git clone https://github.com/YOUR_USERNAME/cvm-intelligence
+```
+
+**Step 2 — Configure secrets in the Streamlit Cloud dashboard**
+
+In *App Settings → Secrets*, paste:
+
+```toml
+GEMINI_API_KEY = "your_gemini_api_key_here"
+```
+
+The app bridges `st.secrets` into `os.environ` at startup, so all downstream code that calls `os.getenv("GEMINI_API_KEY")` works without modification.
+
+**Step 3 — Provide the SQLite database**
+
+`data/cvm_metrics.db` (270 MB) is tracked via Git LFS. Streamlit Cloud automatically pulls LFS objects during deployment.
+
+If you are building from source instead:
+
+```bash
+python scripts/run_extraction.py   # ~1 hour, requires raw PDFs
+```
+
+**Step 4 — Deploy**
+
+Point Streamlit Cloud at `app/app.py` as the entry point. The app uses `requirements.txt` (cloud-safe, no torch or heavy ML deps) and `packages.txt` (system libs).
+
+### What works on Streamlit Cloud vs locally
+
+| Feature | Cloud | Local (full) |
+|---|---|---|
+| Financial Dashboard (SQLite) | ✅ | ✅ |
+| Sentiment Timeline (SQLite) | ✅ | ✅ |
+| System Evaluation page | ✅ | ✅ |
+| RAG Query (hybrid retrieval + Gemini) | ❌ (graceful message) | ✅ |
+| ChromaDB vector search | ❌ (1.8 GB, not in repo) | ✅ |
+| Sentence transformer inference | ❌ (no torch on cloud) | ✅ |
+
+To run the full pipeline locally, install `requirements-dev.txt` instead:
+
+```bash
+pip install -r requirements-dev.txt
 ```
 
 ---
@@ -203,8 +261,12 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-# 2. Set API key
+# 2. Set API key (local development)
 echo "GEMINI_API_KEY=your_key_here" > .env
+
+# For Streamlit Cloud deployment: copy .streamlit/secrets.toml.example to
+# .streamlit/secrets.toml and fill in your key, then configure it in the
+# Streamlit Cloud dashboard under App Settings → Secrets.
 
 # 3. Run the app (requires pre-built DB and ChromaDB)
 streamlit run app/app.py

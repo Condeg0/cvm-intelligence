@@ -65,10 +65,7 @@ def main() -> None:
     clf, le = load_classifier()
     logger.info("Classes: %s", list(le.classes_))
 
-    model_dir = config.MODELS_DIR / "sentence_transformer"
-    if not model_dir.exists():
-        logger.warning("Fine-tuned model not found at %s — using base model", model_dir)
-        model_dir = None  # type: ignore[assignment]
+    model_dir = config.SENTENCE_TRANSFORMER_PATH
 
     from src.nlp.embedder import embed_chunks
 

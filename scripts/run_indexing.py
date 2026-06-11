@@ -160,13 +160,8 @@ def main() -> None:
         logger.error("No chunks found in %s — aborting.", config.CHUNKS_DIR)
         sys.exit(1)
 
-    # 2. Locate the fine-tuned sentence transformer
-    model_dir = config.MODELS_DIR / "sentence_transformer"
-    if not model_dir.exists():
-        logger.warning(
-            "Fine-tuned model not found at %s — falling back to base BERTimbau.", model_dir
-        )
-        model_dir = None  # type: ignore[assignment]
+    # 2. Locate the fine-tuned sentence transformer (local dir or Hub ID)
+    model_dir = config.SENTENCE_TRANSFORMER_PATH
 
     # 3. Build ChromaDB index
     from src.rag.indexer import (

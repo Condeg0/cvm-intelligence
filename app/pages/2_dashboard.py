@@ -11,14 +11,17 @@ import sqlite3
 import sys
 from pathlib import Path
 
+# sys.path must be set before any local-package imports
+_ROOT = Path(__file__).resolve().parent.parent.parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-_ROOT = Path(__file__).resolve().parent.parent.parent
-sys.path.insert(0, str(_ROOT))
-
+from app.components.charts import metric_time_series
 from src import config  # noqa: E402
 
 st.set_page_config(page_title="Financial Dashboard", page_icon="📈", layout="wide")
@@ -140,47 +143,7 @@ else:
     col_chart, col_stats = st.columns([3, 1])
 
     with col_chart:
-        fig = go.Figure()
-
-        for status, color in STATUS_COLORS.items():
-            subset = df[df.match_status == status]
-            if subset.empty:
-                continue
-            fig.add_trace(go.Scatter(
-                x=subset["reference_date"],
-                y=subset["extracted_value"],
-                mode="markers+lines",
-                name=status,
-                marker=dict(color=color, size=8),
-                line=dict(color=color, width=1.5, dash="dot"),
-                hovertemplate=(
-                    "<b>%{x|%Y-%m-%d}</b><br>"
-                    f"{METRIC_LABELS[metric_key]}: %{{y:,.0f}}<br>"
-                    f"Status: {status}"
-                    "<extra></extra>"
-                ),
-            ))
-
-        # Overlay CSV ground truth (validated_value)
-        validated = df[df.validated_value.notna()]
-        if not validated.empty:
-            fig.add_trace(go.Scatter(
-                x=validated["reference_date"],
-                y=validated["validated_value"],
-                mode="markers",
-                name="CSV ground truth",
-                marker=dict(symbol="x", color="#2c3e50", size=10),
-                hovertemplate="<b>%{x|%Y-%m-%d}</b><br>Ground truth: %{y:,.0f}<extra></extra>",
-            ))
-
-        fig.update_layout(
-            title=f"{METRIC_LABELS[metric_key]} — {ticker}",
-            xaxis_title="Period",
-            yaxis_title="Value (R$)",
-            legend_title="Status",
-            hovermode="x unified",
-            height=420,
-        )
+        fig = metric_time_series(df, METRIC_LABELS[metric_key], ticker)
         st.plotly_chart(fig, use_container_width=True)
 
     with col_stats:

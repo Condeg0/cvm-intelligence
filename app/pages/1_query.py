@@ -47,10 +47,9 @@ def _load_indexes():
 
 
 @st.cache_resource(show_spinner="Loading embedding model…")
-def _load_model_dir() -> Path | None:
+def _load_model_dir() -> Path | str:
     from src import config
-    model_dir = config.MODELS_DIR / "sentence_transformer"
-    return model_dir if model_dir.exists() else None
+    return config.SENTENCE_TRANSFORMER_PATH
 
 
 # ---------------------------------------------------------------------------

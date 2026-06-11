@@ -17,16 +17,18 @@ logger = logging.getLogger(__name__)
 _model_cache: dict[str, object] = {}
 
 
-def load_model(model_dir: Path | None = None, device: str | None = None):
+def load_model(model_dir: Path | str | None = None, device: str | None = None):
     """Load the sentence transformer model for embedding.
 
-    Falls back to the base ``neuralmind/bert-base-portuguese-cased`` model if
-    no fine-tuned model is found at ``model_dir``. Results are cached in-process
-    so repeated calls do not reload the model.
+    Accepts a local directory path, a HuggingFace Hub model ID string, or
+    ``None``. Falls back to the base ``neuralmind/bert-base-portuguese-cased``
+    model only when ``None`` is passed. Results are cached in-process so
+    repeated calls do not reload the model.
 
     Args:
-        model_dir: Optional path to a fine-tuned model directory. If ``None``
-            or missing, loads the base model from HuggingFace Hub.
+        model_dir: Local ``Path`` to a fine-tuned model directory, a Hub model
+            ID string (e.g. ``"condeg/cvm-bertimbau-sentence-transformer"``),
+            or ``None`` to load the base model.
         device: PyTorch device string (e.g. ``"cpu"``, ``"cuda"``). ``None``
             lets sentence-transformers pick automatically (GPU if available).
 
@@ -40,29 +42,26 @@ def load_model(model_dir: Path | None = None, device: str | None = None):
     if cache_key in _model_cache:
         return _model_cache[cache_key]
 
-    # A valid SentenceTransformer directory must have modules.json or config.json
-    # with a model_type key. Partial training output dirs (only checkpoints) are invalid.
-    _valid = (
-        model_dir is not None
-        and model_dir.is_dir()
-        and (
-            (model_dir / "modules.json").exists()
-            or (model_dir / "config.json").exists()
-        )
-    )
-
     kwargs: dict = {}
     if device is not None:
         kwargs["device"] = device
 
-    if _valid:
+    if isinstance(model_dir, str):
+        # Hub model ID — pass directly to SentenceTransformer (downloads on first use)
+        logger.info("Loading model from Hub '%s' (device=%s)", model_dir, device or "auto")
+        model = SentenceTransformer(model_dir, **kwargs)
+    elif isinstance(model_dir, Path) and model_dir.is_dir() and (
+        (model_dir / "modules.json").exists() or (model_dir / "config.json").exists()
+    ):
+        # Valid local directory
         logger.info("Loading fine-tuned model from %s (device=%s)", model_dir, device or "auto")
         model = SentenceTransformer(str(model_dir), **kwargs)
     else:
-        if model_dir:
-            logger.info(
-                "Fine-tuned model not found at %s — loading base model %s (device=%s)",
-                model_dir, config.BERT_MODEL_NAME, device or "auto",
+        # None or missing local path — base model fallback
+        if model_dir is not None:
+            logger.warning(
+                "Model not found at %s — falling back to base model %s",
+                model_dir, config.BERT_MODEL_NAME,
             )
         else:
             logger.info("Loading base model %s (device=%s)", config.BERT_MODEL_NAME, device or "auto")

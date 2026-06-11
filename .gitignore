@@ -37,6 +37,7 @@ models/sentiment_classifier/*.bin
 
 # Vector store — rebuild from embeddings
 vectorstore/
+*.pkl          # BM25 index — rebuild from run_indexing.py
 
 # Jupyter
 .ipynb_checkpoints/

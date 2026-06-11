@@ -7,6 +7,7 @@ artefacts — nothing is computed at render time.
 
 from __future__ import annotations
 
+import json
 import sqlite3
 import sys
 from pathlib import Path
@@ -44,6 +45,7 @@ SENTIMENT_METRICS = {
     "positive_f1": 0.462,
     "negative_f1": 0.740,
     "accuracy": 0.650,
+    "cohen_kappa": 0.530,
     "mode": "binary (positive / negative)",
 }
 
@@ -87,6 +89,26 @@ def load_extraction_summary() -> dict:
     }
 
 
+@st.cache_data(ttl=3600)
+def load_embedding_comparison() -> dict | None:
+    """Load embedding comparison results from JSON, or None if not yet generated."""
+    path = config.EVALUATION_DIR / "embedding_comparison.json"
+    if not path.exists():
+        return None
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@st.cache_data(ttl=3600)
+def load_rag_quality() -> dict | None:
+    """Load RAG quality evaluation results, or None if file not yet generated."""
+    path = config.EVALUATION_DIR / "rag_quality_eval.json"
+    if not path.exists():
+        return None
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
 @st.cache_data(ttl=60)
 def load_sentiment_coverage() -> tuple[int, int]:
     with sqlite3.connect(config.DB_PATH) as conn:
@@ -127,8 +149,8 @@ kpi5.metric("Sentiment Macro F1",     f"{SENTIMENT_METRICS['macro_f1']:.3f}",
 st.divider()
 
 # ── Tab layout ──────────────────────────────────────────────────────────────
-tab1, tab2, tab3 = st.tabs(
-    ["📊 Extraction Accuracy", "🔍 Retrieval Ablation", "🧠 NLP Models"]
+tab1, tab2, tab3, tab4 = st.tabs(
+    ["📊 Extraction Accuracy", "🔍 Retrieval Ablation", "🧠 NLP Models", "💬 RAG Quality"]
 )
 
 # ── Tab 1: Extraction ───────────────────────────────────────────────────────
@@ -305,11 +327,17 @@ with tab3:
                   delta=f"{100*scored/total:.0f}% coverage" if total else "—")
 
         st.markdown("**Test-set metrics (80/20 stratified split)**")
-        metric_cols = st.columns(4)
+        metric_cols = st.columns(5)
         metric_cols[0].metric("Macro F1", f"{SENTIMENT_METRICS['macro_f1']:.3f}")
         metric_cols[1].metric("Positive F1", f"{SENTIMENT_METRICS['positive_f1']:.3f}")
         metric_cols[2].metric("Negative F1", f"{SENTIMENT_METRICS['negative_f1']:.3f}")
         metric_cols[3].metric("Accuracy", f"{SENTIMENT_METRICS['accuracy']:.3f}")
+        metric_cols[4].metric("Cohen's κ", f"{SENTIMENT_METRICS['cohen_kappa']:.3f}",
+                              help="Inter-annotator agreement: manual vs Gemini labels (100 samples)")
+        st.caption(
+            "Moderate agreement between manual and Gemini labels (κ = 0.530) — "
+            "bootstrap labels are acceptable for training."
+        )
 
         st.markdown("**Label distribution (500 Gemini-bootstrapped labels)**")
         label_df = pd.DataFrame([
@@ -332,9 +360,91 @@ company filings are legally required to be factual, so the genuine pessimistic s
 is rare and concentrated in macro-economic shock periods.
             """)
 
-        st.divider()
-        st.subheader("Corpus statistics")
-        st.markdown(f"""
+    # ── Embedding comparison ─────────────────────────────────────────────────
+    st.subheader("Embedding model comparison — dense retrieval")
+    st.caption(
+        "All three models evaluated on the same 5,000-chunk subsample (274 required + "
+        "4,726 random distractors). Dense-only retrieval; no BM25, no reranker."
+    )
+
+    emb_data = load_embedding_comparison()
+    if emb_data is None:
+        st.info(
+            "Embedding comparison results not found. "
+            "Run `python scripts/run_embedding_comparison.py` to generate them."
+        )
+    else:
+        # Build display DataFrame from the three subsample configs
+        subsample_keys = ["fine_tuned_subsample", "base_bertimbau", "multilingual_minilm"]
+        metric_keys = ["Recall@5", "Recall@10", "MRR", "NDCG@10"]
+        rows = [emb_data["results"][k] for k in subsample_keys]
+        labels = [r["label"] for r in rows]
+
+        # x-axis = metrics, grouped bars = models; fine-tuned stands out in blue
+        model_colors = ["#3498db", "#95a5a6", "#bdc3c7"]
+        emb_fig = go.Figure()
+        for row, color in zip(rows, model_colors):
+            emb_fig.add_trace(go.Bar(
+                name=row["label"],
+                x=metric_keys,
+                y=[row[m] for m in metric_keys],
+                marker_color=color,
+                text=[f"{row[m]:.4f}" for m in metric_keys],
+                textposition="outside",
+            ))
+
+        emb_fig.update_layout(
+            barmode="group",
+            title="Dense retrieval metrics by embedding model (5k subsample)",
+            yaxis=dict(title="Score", range=[0, 0.40]),
+            xaxis_title="Metric",
+            legend_title="Model",
+            height=420,
+        )
+        st.plotly_chart(emb_fig, use_container_width=True)
+
+        ft_r5 = emb_data["results"]["fine_tuned_subsample"]["Recall@5"]
+        base_r5 = emb_data["results"]["base_bertimbau"]["Recall@5"]
+        delta_pct = (ft_r5 - base_r5) / base_r5 * 100
+        st.info(
+            f"Fine-tuning raised Recall@5 from {base_r5:.4f} (base BERTimbau) to "
+            f"{ft_r5:.4f} — a **{delta_pct:+.0f}%** improvement on the same 5k-chunk pool."
+        )
+
+        # Summary table
+        emb_df = pd.DataFrame([
+            {**{"Model": r["label"]}, **{k: r[k] for k in metric_keys}}
+            for r in rows
+        ])
+        st.dataframe(
+            emb_df.set_index("Model").style.highlight_max(axis=0, color="#d5f5e3"),
+            use_container_width=True,
+        )
+
+        # Cross-check note
+        full = emb_data["results"].get("fine_tuned_full", {})
+        if full:
+            st.caption(
+                f"Cross-check — fine-tuned model on full 97k corpus (ChromaDB): "
+                f"Recall@5 {full['Recall@5']:.4f} · Recall@10 {full['Recall@10']:.4f} · "
+                f"MRR {full['MRR']:.4f} · NDCG@10 {full['NDCG@10']:.4f}. "
+                "Lower scores vs the subsample reflect the much larger distractor pool (97k vs 5k)."
+            )
+
+        meta = emb_data.get("metadata", {})
+        with st.expander("Evaluation methodology"):
+            st.markdown(f"""
+- **Queries:** {meta.get('n_queries', 94)} synthetic queries over the full corpus
+- **Subsample:** {meta.get('subsample_size', 5000):,} chunks — {meta.get('n_relevant_chunks', 274)} required (relevant) + random distractors
+- **All relevant chunks guaranteed present** in the subsample so Recall@K is computable
+- **In-memory search:** L2-normalised embeddings, numpy dot-product, argsort — no FAISS needed at 5k scale
+- **Fine-tuned model** additionally evaluated on the full 97k ChromaDB corpus as a consistency check
+- Seed: {meta.get('subsample_seed', 42)}
+            """)
+
+    st.divider()
+    st.subheader("Corpus statistics")
+    st.markdown(f"""
 | Stat | Value |
 |---|---|
 | Companies | 49 (B3 large-caps, CCR absent from CVM open data) |
@@ -344,4 +454,164 @@ is rare and concentrated in macro-economic shock periods.
 | Total metrics extracted | 4,651 |
 | Total chunks indexed | 97,138 |
 | ChromaDB size | ~1.4 GB |
-        """)
+    """)
+
+
+# ── Tab 4: RAG Quality ───────────────────────────────────────────────────────
+with tab4:
+    rag_data = load_rag_quality()
+
+    if rag_data is None:
+        st.info(
+            "RAG quality results not found. "
+            "Run `python scripts/evaluate_rag_quality.py` and fill in scores."
+        )
+    else:
+        all_results = rag_data["results"]
+        # Only use entries that have been manually scored
+        scored = [
+            r for r in all_results
+            if r["faithfulness"] is not None
+            and r["relevance"] is not None
+            and r["completeness"] is not None
+        ]
+        n_total = len(all_results)
+        n_scored = len(scored)
+
+        if n_scored < n_total:
+            st.warning(
+                f"{n_total - n_scored} of {n_total} entries have null scores and are excluded."
+            )
+
+        st.caption(
+            f"Full pipeline evaluation — hybrid retrieval → cross-encoder reranking → "
+            f"Gemini 2.5 Flash generation. Manually scored on {n_scored} queries "
+            f"(5 per type: factual, thematic, comparative, temporal)."
+        )
+
+        # ── 1. Summary KPI row ───────────────────────────────────────────────
+        avg_faith = sum(r["faithfulness"] for r in scored) / n_scored
+        avg_rel   = sum(r["relevance"]    for r in scored) / n_scored
+        avg_comp  = sum(r["completeness"] for r in scored) / n_scored
+
+        kpi_a, kpi_b, kpi_c = st.columns(3)
+        kpi_a.metric(
+            "Avg Faithfulness",
+            f"{avg_faith * 100:.0f}%",
+            help="1 = answer uses only retrieved chunks; 0 = hallucination detected",
+        )
+        kpi_b.metric(
+            "Avg Relevance",
+            f"{avg_rel:.2f} / 5",
+            help="1–5: does the answer address the query?",
+        )
+        kpi_c.metric(
+            "Avg Completeness",
+            f"{avg_comp:.2f} / 5",
+            help="1–5: does the answer use all relevant retrieved content?",
+        )
+
+        st.divider()
+
+        # ── 2. Scatter plot: relevance × completeness by query type ──────────
+        st.subheader("Relevance vs. completeness by query type")
+
+        type_colors = {
+            "factual":     "#3498db",
+            "thematic":    "#2ecc71",
+            "comparative": "#e67e22",
+            "temporal":    "#9b59b6",
+        }
+        scatter_df = pd.DataFrame([
+            {
+                "Relevance":    r["relevance"],
+                "Completeness": r["completeness"],
+                "Query Type":   r["query_type"],
+                "Query":        r["query"],
+                "Faithfulness": r["faithfulness"],
+                "ID":           r["id"],
+            }
+            for r in scored
+        ])
+
+        scatter_fig = px.scatter(
+            scatter_df,
+            x="Relevance",
+            y="Completeness",
+            color="Query Type",
+            color_discrete_map=type_colors,
+            hover_data={"Query": True, "Faithfulness": True, "ID": True,
+                        "Relevance": False, "Completeness": False, "Query Type": False},
+            title="Relevance vs. completeness (20 manually scored queries)",
+            range_x=[0.5, 5.5],
+            range_y=[0.5, 5.5],
+        )
+        scatter_fig.update_traces(marker=dict(size=12, opacity=0.85))
+        scatter_fig.update_layout(
+            height=420,
+            xaxis=dict(tickvals=[1, 2, 3, 4, 5]),
+            yaxis=dict(tickvals=[1, 2, 3, 4, 5]),
+        )
+        st.plotly_chart(scatter_fig, use_container_width=True)
+
+        st.divider()
+
+        # ── 3 & 4. Failure analysis + best results ───────────────────────────
+        col_fail, col_best = st.columns(2)
+
+        def _sort_key_asc(r):
+            return (r["faithfulness"], r["relevance"], r["completeness"])
+
+        def _sort_key_desc(r):
+            return (-r["faithfulness"], -r["relevance"], -r["completeness"])
+
+        worst = sorted(scored, key=_sort_key_asc)[:3]
+        best  = sorted(scored, key=_sort_key_desc)[:3]
+
+        def _result_rows(results: list[dict]) -> pd.DataFrame:
+            return pd.DataFrame([
+                {
+                    "Query":        r["query"][:90] + "…" if len(r["query"]) > 90 else r["query"],
+                    "Answer":       r["generated_answer"][:200] + "…"
+                                    if len(r["generated_answer"]) > 200
+                                    else r["generated_answer"],
+                    "Type":         r["query_type"],
+                    "F":            r["faithfulness"],
+                    "R":            r["relevance"],
+                    "C":            r["completeness"],
+                }
+                for r in results
+            ])
+
+        with col_fail:
+            st.subheader("Failure analysis")
+            st.caption("3 lowest-scoring answers (sorted by faithfulness, then relevance)")
+            fail_df = _result_rows(worst)
+            st.dataframe(fail_df, use_container_width=True, hide_index=True,
+                         column_config={
+                             "Query":  st.column_config.TextColumn(width="medium"),
+                             "Answer": st.column_config.TextColumn(width="medium"),
+                             "F": st.column_config.NumberColumn("Faith.", format="%d"),
+                             "R": st.column_config.NumberColumn("Rel.", format="%d"),
+                             "C": st.column_config.NumberColumn("Comp.", format="%d"),
+                         })
+            with st.expander("Why failures matter"):
+                st.markdown(
+                    "Low relevance (R=1) is concentrated in **temporal** and **thematic** queries "
+                    "where the pipeline retrieved chunks from the correct domain but the wrong "
+                    "company or time period. Faithfulness remains 1.0 across all entries — "
+                    "Gemini did not hallucinate facts not present in the retrieved context."
+                )
+
+        with col_best:
+            st.subheader("Best results")
+            st.caption("3 highest-scoring answers (sorted by faithfulness, then relevance)")
+            best_df = _result_rows(best)
+            st.dataframe(best_df, use_container_width=True, hide_index=True,
+                         column_config={
+                             "Query":  st.column_config.TextColumn(width="medium"),
+                             "Answer": st.column_config.TextColumn(width="medium"),
+                             "F": st.column_config.NumberColumn("Faith.", format="%d"),
+                             "R": st.column_config.NumberColumn("Rel.", format="%d"),
+                             "C": st.column_config.NumberColumn("Comp.", format="%d"),
+                         })

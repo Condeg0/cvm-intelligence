@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "n_queries": 94,
+    "subsample_size": 5000,
+    "n_relevant_chunks": 274,
+    "subsample_seed": 42,
+    "device": "cuda",
+    "generated_at": "2026-06-10T14:45:15.814680"
+  },
+  "results": {
+    "fine_tuned_subsample": {
+      "label": "Fine-tuned BERTimbau (5k subsample)",
+      "Recall@5": 0.20390070921985812,
+      "Recall@10": 0.2695035460992907,
+      "MRR": 0.27977034785545424,
+      "NDCG@10": 0.21901519294154026
+    },
+    "fine_tuned_full": {
+      "label": "Fine-tuned BERTimbau (97k corpus)",
+      "Recall@5": 0.056737588652482254,
+      "Recall@10": 0.07092198581560283,
+      "MRR": 0.09974670719351571,
+      "NDCG@10": 0.06308608029183486
+    },
+    "base_bertimbau": {
+      "label": "Base BERTimbau (5k subsample)",
+      "Recall@5": 0.09574468085106383,
+      "Recall@10": 0.12056737588652482,
+      "MRR": 0.1881627828436339,
+      "NDCG@10": 0.11429478997035182
+    },
+    "multilingual_minilm": {
+      "label": "paraphrase-multilingual-MiniLM-L12-v2 (5k subsample)",
+      "Recall@5": 0.09574468085106384,
+      "Recall@10": 0.1347517730496454,
+      "MRR": 0.1684819317798041,
+      "NDCG@10": 0.11479700948269224
+    }
+  }
+}

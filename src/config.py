@@ -45,6 +45,13 @@ DB_PATH = DATA_DIR / "cvm_metrics.db"
 MODELS_DIR = PROJECT_ROOT / "models"
 SENTIMENT_MODEL_DIR = MODELS_DIR / "sentiment_classifier"
 
+# HuggingFace Hub ID for the fine-tuned sentence transformer
+SENTENCE_TRANSFORMER_HUB_ID: str = "condeg/cvm-bertimbau-sentence-transformer"
+
+# Resolved to local weights during development, Hub ID on a fresh clone / Streamlit Cloud
+_local_st = MODELS_DIR / "sentence_transformer"
+SENTENCE_TRANSFORMER_PATH: Path | str = _local_st if _local_st.is_dir() else SENTENCE_TRANSFORMER_HUB_ID
+
 # ---------------------------------------------------------------------------
 # Vector store
 # ---------------------------------------------------------------------------
