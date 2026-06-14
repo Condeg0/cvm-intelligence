@@ -37,7 +37,13 @@ _ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(_ROOT))
 
 from src import config  # noqa: E402 — must come after sys.path insert
-from app.load_vectorstore import ensure_chromadb  # noqa: E402
+
+# load_vectorstore lives in the same directory as this file (app/).
+# Streamlit adds the script's directory to sys.path, so import without package prefix.
+_APP_DIR = Path(__file__).resolve().parent
+if str(_APP_DIR) not in sys.path:
+    sys.path.insert(0, str(_APP_DIR))
+from load_vectorstore import ensure_chromadb  # noqa: E402
 
 # Attempt ChromaDB download on high-memory deployments; no-op on Community Cloud.
 ensure_chromadb(show_progress=True)
