@@ -38,7 +38,7 @@ sys.path.insert(0, str(_ROOT))
 
 from src import config  # noqa: E402 — must come after sys.path insert
 
-_DB_OK = config.DB_PATH.exists()
+_DB_OK = config.DASHBOARD_DB_PATH.exists()
 _CHROMA_OK = (config.CHROMADB_DIR / "chroma.sqlite3").exists()
 
 # ---------------------------------------------------------------------------
@@ -56,15 +56,10 @@ st.set_page_config(
 # ---------------------------------------------------------------------------
 if not _DB_OK:
     st.error(
-        "**Database not found:** `data/cvm_metrics.db` is missing.\n\n"
-        "The Financial Dashboard, Sentiment Timeline, and Evaluation pages all "
-        "require this file. Please follow the setup instructions in "
-        "[README.md](https://github.com/conderafael/cvm-intelligence#running-locally):\n\n"
-        "```bash\n"
-        "# Rebuild from source (takes ~1 hour)\n"
-        "python scripts/run_extraction.py\n"
-        "```\n\n"
-        "Or download the pre-built database from the GitHub Releases page."
+        "**Database not found:** `data/cvm_metrics_dashboard.db` is missing.\n\n"
+        "The Financial Dashboard and Evaluation pages require this file. "
+        "It should be committed to the repository — please ensure you have "
+        "the latest `main` branch checked out."
     )
 
 # ---------------------------------------------------------------------------

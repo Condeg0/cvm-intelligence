@@ -33,7 +33,7 @@ st.set_page_config(page_title="Financial Dashboard", page_icon="📈", layout="w
 @st.cache_data(ttl=300)
 def load_companies() -> pd.DataFrame:
     """Return all tickers and company names from the DB."""
-    with sqlite3.connect(config.DB_PATH) as conn:
+    with sqlite3.connect(config.DASHBOARD_DB_PATH) as conn:
         return pd.read_sql("SELECT ticker, name FROM companies ORDER BY ticker", conn)
 
 
@@ -56,7 +56,7 @@ def load_metrics(ticker: str, metric_name: str) -> pd.DataFrame:
           AND m.metric_name = ?
         ORDER BY f.reference_date
     """
-    with sqlite3.connect(config.DB_PATH) as conn:
+    with sqlite3.connect(config.DASHBOARD_DB_PATH) as conn:
         df = pd.read_sql(query, conn, params=(ticker, metric_name))
     df["reference_date"] = pd.to_datetime(df["reference_date"])
     return df
@@ -79,7 +79,7 @@ def load_cross_company(metric_name: str, period: str) -> pd.DataFrame:
           AND f.reference_date = ?
         ORDER BY m.extracted_value DESC
     """
-    with sqlite3.connect(config.DB_PATH) as conn:
+    with sqlite3.connect(config.DASHBOARD_DB_PATH) as conn:
         return pd.read_sql(query, conn, params=(metric_name, period))
 
 
@@ -192,7 +192,7 @@ st.subheader("Cross-company comparison")
 available_periods = sorted(
     pd.read_sql(
         "SELECT DISTINCT reference_date FROM filings ORDER BY reference_date DESC",
-        sqlite3.connect(config.DB_PATH),
+        sqlite3.connect(config.DASHBOARD_DB_PATH),
     )["reference_date"].tolist()
 )
 

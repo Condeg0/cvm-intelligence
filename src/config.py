@@ -39,6 +39,10 @@ EVALUATION_DIR = DATA_DIR / "evaluation"
 # ---------------------------------------------------------------------------
 DB_PATH = DATA_DIR / "cvm_metrics.db"
 
+# Slim DB (companies + filings + metrics only — no chunks).
+# Committed directly to Git (<1 MB); used by the Streamlit app on Cloud.
+DASHBOARD_DB_PATH = DATA_DIR / "cvm_metrics_dashboard.db"
+
 # ---------------------------------------------------------------------------
 # Models
 # ---------------------------------------------------------------------------

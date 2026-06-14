@@ -62,7 +62,7 @@ TRAINING_LOSS = [
 
 @st.cache_data(ttl=600)
 def load_extraction_summary() -> dict:
-    with sqlite3.connect(config.DB_PATH) as conn:
+    with sqlite3.connect(config.DASHBOARD_DB_PATH) as conn:
         status_rows = conn.execute(
             "SELECT match_status, COUNT(*) FROM metrics GROUP BY match_status"
         ).fetchall()
@@ -111,12 +111,15 @@ def load_rag_quality() -> dict | None:
 
 @st.cache_data(ttl=60)
 def load_sentiment_coverage() -> tuple[int, int]:
-    with sqlite3.connect(config.DB_PATH) as conn:
-        scored = conn.execute(
-            "SELECT COUNT(*) FROM chunks WHERE sentiment_label IS NOT NULL"
-        ).fetchone()[0]
-        total = conn.execute("SELECT COUNT(*) FROM chunks").fetchone()[0]
-    return scored, total
+    try:
+        with sqlite3.connect(config.DASHBOARD_DB_PATH) as conn:
+            scored = conn.execute(
+                "SELECT COUNT(*) FROM chunks WHERE sentiment_label IS NOT NULL"
+            ).fetchone()[0]
+            total = conn.execute("SELECT COUNT(*) FROM chunks").fetchone()[0]
+        return scored, total
+    except Exception:
+        return 0, 0
 
 
 # ---------------------------------------------------------------------------

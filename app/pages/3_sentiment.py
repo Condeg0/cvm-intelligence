@@ -31,7 +31,7 @@ st.set_page_config(page_title="Sentiment Timeline", page_icon="💬", layout="wi
 
 @st.cache_data(ttl=300)
 def load_companies() -> pd.DataFrame:
-    with sqlite3.connect(config.DB_PATH) as conn:
+    with sqlite3.connect(config.DASHBOARD_DB_PATH) as conn:
         return pd.read_sql("SELECT ticker, name FROM companies ORDER BY ticker", conn)
 
 
@@ -60,8 +60,11 @@ def load_sentiment(ticker: str, section: str | None) -> pd.DataFrame:
         GROUP BY f.reference_date, f.filing_type, c.section_name, c.sentiment_label
         ORDER BY f.reference_date, c.sentiment_label
     """
-    with sqlite3.connect(config.DB_PATH) as conn:
-        df = pd.read_sql(query, conn, params=params)
+    try:
+        with sqlite3.connect(config.DASHBOARD_DB_PATH) as conn:
+            df = pd.read_sql(query, conn, params=params)
+    except Exception:
+        return pd.DataFrame()
     df["reference_date"] = pd.to_datetime(df["reference_date"])
     return df
 
@@ -91,16 +94,22 @@ def load_chunks_for_period(ticker: str, period: str, section: str | None) -> pd.
         ORDER BY c.sentiment_score DESC
         LIMIT 50
     """
-    with sqlite3.connect(config.DB_PATH) as conn:
-        return pd.read_sql(query, conn, params=params)
+    try:
+        with sqlite3.connect(config.DASHBOARD_DB_PATH) as conn:
+            return pd.read_sql(query, conn, params=params)
+    except Exception:
+        return pd.DataFrame()
 
 
 @st.cache_data(ttl=60)
 def check_sentiment_populated() -> int:
-    with sqlite3.connect(config.DB_PATH) as conn:
-        return conn.execute(
-            "SELECT COUNT(*) FROM chunks WHERE sentiment_label IS NOT NULL"
-        ).fetchone()[0]
+    try:
+        with sqlite3.connect(config.DASHBOARD_DB_PATH) as conn:
+            return conn.execute(
+                "SELECT COUNT(*) FROM chunks WHERE sentiment_label IS NOT NULL"
+            ).fetchone()[0]
+    except Exception:
+        return 0
 
 
 # ---------------------------------------------------------------------------
