@@ -24,20 +24,27 @@ env/
 .env
 .streamlit/secrets.toml
 
-# Data — large pipeline artifacts not needed to run the app
-data/raw/pdfs/       # 6.8 GB — rebuilt by download_pdfs.py
-data/raw/csvs/       # 78 MB  — rebuilt by download_csvs.py
-data/processed/      # 700 MB — rebuilt by run_extraction.py + run_indexing.py
+# Data — large pipeline artifacts (6.8 GB PDFs, 78 MB CSVs, 700 MB processed files)
+# Rebuilt locally via: download_pdfs.py / download_csvs.py / run_extraction.py
+data/raw/pdfs/
+data/raw/csvs/
+data/processed/
 
-# Sentence transformer weights — large; use HuggingFace Hub instead
+# Full SQLite database (271 MB) — contains chunks table with 97k text blobs.
+# Only the slim dashboard DB (432 KB, no chunks) is committed to git.
+data/cvm_metrics.db
+
+# Sentence transformer weights — download from HuggingFace Hub at runtime
 models/sentence_transformer/
+
 # Only exclude binary weight files; .joblib classifiers ARE committed
 models/sentiment_classifier/*.pt
 models/sentiment_classifier/*.bin
 
-# Vector store — rebuild from embeddings
+# Vector store — rebuild from embeddings via run_indexing.py
 vectorstore/
-*.pkl          # BM25 index — rebuild from run_indexing.py
+# BM25 index pickle — rebuild via run_indexing.py
+*.pkl
 
 # Jupyter
 .ipynb_checkpoints/

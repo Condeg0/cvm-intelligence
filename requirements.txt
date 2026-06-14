@@ -1,6 +1,6 @@
-# Streamlit Cloud deployment requirements.
-# Contains only what the four app pages need at runtime.
-# Heavy pipeline deps (torch, chromadb, PyMuPDF, etc.) live in requirements-dev.txt.
+# Streamlit Cloud runtime dependencies.
+# Only what the four app pages need — no GPU, no ChromaDB, no PyMuPDF.
+# Heavy pipeline deps live in requirements-dev.txt.
 
 # Application
 streamlit>=1.28.0
@@ -11,9 +11,12 @@ altair>=5.0.0
 pandas>=2.1.0
 numpy>=1.24.0
 
-# API — Gemini 2.5 Flash (used by the RAG query page when running locally with data)
+# API — Gemini 2.5 Flash (RAG generation when running locally with ChromaDB)
 google-genai>=1.0.0
 google-generativeai>=0.8.0
+
+# HuggingFace Hub — model card links and optional ChromaDB snapshot download
+huggingface_hub>=0.21.0
 
 # Utilities
 python-dotenv>=1.0.0

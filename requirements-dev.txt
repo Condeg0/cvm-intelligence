@@ -1,6 +1,7 @@
 # Full development requirements — for running the complete pipeline locally.
 # Requires a GPU (RTX A1000 or better) and 16GB+ RAM.
-# For Streamlit Cloud deployment, use requirements.txt instead.
+# Install: pip install -r requirements.txt -r requirements-dev.txt
+# For Streamlit Cloud deployment, use requirements.txt only.
 
 # Core ML
 torch>=2.1.0
@@ -20,6 +21,9 @@ datasets>=2.14.0
 scikit-learn>=1.3.0
 joblib>=1.3.0
 
+# HuggingFace Hub
+huggingface_hub>=0.21.0
+
 # API — Gemini 2.5 Flash (new SDK; google-generativeai kept as fallback)
 google-genai>=1.0.0
 google-generativeai>=0.8.0
@@ -34,6 +38,7 @@ pandas>=2.1.0
 numpy>=1.24.0
 
 # Utilities
+requests>=2.31.0
 tqdm>=4.66.0
 python-dotenv>=1.0.0
 

@@ -37,6 +37,10 @@ _ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(_ROOT))
 
 from src import config  # noqa: E402 — must come after sys.path insert
+from app.load_vectorstore import ensure_chromadb  # noqa: E402
+
+# Attempt ChromaDB download on high-memory deployments; no-op on Community Cloud.
+ensure_chromadb(show_progress=True)
 
 _DB_OK = config.DASHBOARD_DB_PATH.exists()
 _CHROMA_OK = (config.CHROMADB_DIR / "chroma.sqlite3").exists()

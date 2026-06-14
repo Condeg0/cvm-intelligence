@@ -1,334 +1,223 @@
 # CVM Filing Intelligence System
 
-An end-to-end pipeline that transforms raw Brazilian public company filings (CVM ITR and DFP documents) into a queryable intelligence system. Built as a portfolio project demonstrating ML engineering across the full stack: data acquisition, PDF parsing, rule-based extraction, NLP model fine-tuning, vector search, and a Streamlit application.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://cvm-intelligence.streamlit.app)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.1-orange?logo=pytorch)
+![HuggingFace](https://img.shields.io/badge/HuggingFace-BERTimbau-yellow?logo=huggingface)
+![ChromaDB](https://img.shields.io/badge/Vector_Store-ChromaDB-purple)
+![Streamlit](https://img.shields.io/badge/App-Streamlit-red?logo=streamlit)
+![Gemini](https://img.shields.io/badge/LLM-Gemini_2.5_Flash-blue?logo=google)
 
-**Author:** Rafael Condé Gomes
+An end-to-end pipeline that transforms raw Brazilian public company filings (CVM ITR and DFP documents) into a queryable intelligence system. The system covers 49 of the largest B3-listed companies over three years (~686 filings), combining a deterministic quantitative extraction engine validated against structured ground truth with a hybrid semantic RAG pipeline over 97,000 management commentary chunks.
 
 ---
 
-## What It Does
+## Live App
 
-Two parallel pipelines over the same corpus of 686 CVM filings from 49 B3 large-caps (2022–2025):
+**[https://cvm-intelligence.streamlit.app](https://cvm-intelligence.streamlit.app)**
 
-1. **Quantitative pipeline** — Extracts financial metrics (revenue, net income, EBITDA, etc.) from PDF financial statements using rule-based parsing validated against CVM's structured CSV ground truth. Achieves **95.2% exact match** on 4,651 metric extractions.
+> The Financial Dashboard and Evaluation pages are fully functional on the live app.
+> The RAG Query page requires the 1.8 GB ChromaDB index and is available in local setup only.
 
-2. **Qualitative pipeline** — Fine-tuned BERTimbau sentence transformer + BM25 hybrid retrieval over 97,138 management commentary chunks. Answers natural-language questions via Gemini 2.5 Flash with cited sources. Binary sentiment classifier tracks management tone over time.
+---
+
+## Key Results
+
+### Quantitative Extraction (Phase 3)
+
+Rule-based extraction against CVM structured CSV ground truth across 7 financial metrics and 686 filings:
+
+| Metric | Exact Match |
+|---|---|
+| Total Assets | 97% |
+| Total Equity | 97% |
+| Gross Profit | 96% |
+| Revenue | 96% |
+| Operating Cash Flow | 95% |
+| COGS | 93% |
+| Net Income | 92% |
+| **Overall** | **95.2%** |
+
+- **MAPE:** 0.06% on matched values
+- **Coverage:** 632 / 686 filings fully extracted; 4,425 / 4,651 metric-period values exactly matched
+- No LLM used for number extraction — fully deterministic, auditable rules
+
+### Retrieval Evaluation (Phase 5)
+
+Fine-tuned BERTimbau vs baselines on 94-query test set (5,000-chunk subsample):
+
+| Model | Recall@5 | Recall@10 | MRR | NDCG@10 |
+|---|---|---|---|---|
+| **Fine-tuned BERTimbau** | **20.4%** | **26.9%** | **28.0%** | **21.9%** |
+| Base BERTimbau | 9.6% | 12.1% | 18.8% | 11.4% |
+| Multilingual MiniLM-L12 | 9.6% | 13.5% | 16.8% | 11.5% |
+
+Fine-tuned model achieves **2.1× Recall@5** and **1.5× MRR** over the base BERTimbau.
+
+### Sentiment Labeling (Phase 4)
+
+500 management commentary chunks labeled via Gemini API bootstrap, used to train a 3-class classifier:
+- Neutral: 76% | Optimistic: 22% | Pessimistic: 2%
 
 ---
 
 ## Architecture
 
+Two independent pipelines share a SQLite backbone:
+
+### Pipeline 1 — Quantitative Extraction
+
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                         Data Sources                                │
-│  CVM Dados Abertos CSVs (ground truth)   CVM PDF Filing Portal      │
-└────────────────┬───────────────────────────────┬────────────────────┘
-                 │                               │
-        ┌────────▼────────┐             ┌────────▼────────┐
-        │  CSV Acquisition │             │  PDF Acquisition │
-        │  download_csvs   │             │  download_pdfs   │
-        └────────┬─────────┘            └────────┬─────────┘
-                 │                               │
-                 │                      ┌────────▼─────────────────┐
-                 │                      │     PDF Parsing           │
-                 │                      │  PyMuPDF + pdfplumber     │
-                 │                      │  section_detector.py      │
-                 │                      │  chunker.py               │
-                 │                      └──────┬──────────┬─────────┘
-                 │                             │          │
-        ┌────────▼──────────────┐   ┌──────────▼──┐  ┌───▼──────────────┐
-        │  Quantitative         │   │  NLP / RAG  │  │  SQLite DB       │
-        │  Extraction           │   │  Pipeline   │  │  cvm_metrics.db  │
-        │  metric_extractor.py  │   │             │  │  97k chunks      │
-        │  value_parser.py      │   │ BERTimbau   │  │  4,651 metrics   │
-        │  validator.py         │   │ fine-tuned  │  │  686 filings     │
-        └──────────┬────────────┘   │ BM25 index  │  └──────────────────┘
-                   │                │ ChromaDB    │
-                   │                └──────┬──────┘
-                   │                       │
-                   └───────────┬───────────┘
-                               │
-                    ┌──────────▼────────────┐
-                    │    Streamlit App       │
-                    │  4-page portfolio UI  │
-                    │  ┌─────────────────┐  │
-                    │  │ 1. RAG Query    │  │
-                    │  │ 2. Dashboard    │  │
-                    │  │ 3. Sentiment    │  │
-                    │  │ 4. Evaluation   │  │
-                    │  └─────────────────┘  │
-                    └───────────────────────┘
+CVM CSVs (ground truth) ──┐
+                           ├──► Validation ──► SQLite metrics table
+CVM PDFs ──► PyMuPDF ──► Rule-based extractor ──┘
+             pdfplumber
 ```
 
-### Tech Stack
+**Key decisions:**
+- **Rule-based, not LLM** — financial values are deterministic; LLMs introduce hallucination risk and are expensive at 686× scale. Regex + table position heuristics achieve 95.2% exact match.
+- **Dual extraction** — PyMuPDF for narrative text blocks (positional metadata), pdfplumber for financial statement tables (preserves row/column structure).
+- **Validated against CSV ground truth** — every extracted value is checked against CVM's own structured data before being trusted.
+
+### Pipeline 2 — Qualitative RAG
+
+```
+PDFs ──► Section detector ──► Paragraph chunker ──► BERTimbau embedder
+                                                           │
+                                              ChromaDB (dense) + BM25 (sparse)
+                                                           │
+                                              Reciprocal Rank Fusion (top-10)
+                                                           │
+                                          Cross-encoder reranker (top-5)
+                                                           │
+                                              Gemini 2.5 Flash (generation)
+```
+
+**Key decisions:**
+- **Section-aware chunking, not fixed-size windows** — splits on paragraph boundaries within detected sections (Relatório da Administração, Notas Explicativas), preserving document structure.
+- **Fine-tuned BERTimbau** — `neuralmind/bert-base-portuguese-cased` fine-tuned with MultipleNegativesRankingLoss on 124k contrastive pairs generated from the filing corpus. 2.1× retrieval improvement over base model.
+- **Hybrid retrieval + RRF** — dense (ChromaDB) + sparse (BM25) combined with Reciprocal Rank Fusion. Dense captures semantic similarity; sparse captures exact financial terminology (EBITDA, LAJIDA).
+- **Cross-encoder reranking** — reranks top-10 RRF results with `cross-encoder/ms-marco-MiniLM-L-6-v2` before generation.
+- **No RAG frameworks** — every component is built from primitives. No LangChain, no LlamaIndex.
+
+---
+
+## Tech Stack
 
 | Component | Tool |
 |---|---|
 | PDF text extraction | PyMuPDF (fitz) |
 | PDF table extraction | pdfplumber |
 | Sentence embeddings | sentence-transformers + BERTimbau |
-| Vector store | ChromaDB (HNSW cosine, ~1.8 GB) |
-| Sparse retrieval | rank_bm25 (BM25Okapi, pickled) |
-| Fusion | Reciprocal Rank Fusion (k=60) |
+| Vector store | ChromaDB (persisted to disk) |
+| Sparse retrieval | rank-bm25 |
 | Cross-encoder reranker | cross-encoder/ms-marco-MiniLM-L-6-v2 |
-| Structured DB | SQLite (~270 MB) |
-| Generation | Gemini 2.5 Flash |
-| Sentiment | LogisticRegression on frozen BERTimbau embeddings |
+| Structured storage | SQLite (stdlib) |
+| LLM generation + labeling | Gemini 2.5 Flash |
 | App framework | Streamlit |
 | Charts | Plotly + Altair |
-| Training hardware | NVIDIA RTX A1000 (6GB VRAM), fp16 |
+| ML framework | PyTorch + Transformers |
+| Training hardware | NVIDIA RTX A1000 (6 GB VRAM) |
 
 ---
 
-## Results
+## Fine-tuned Model
 
-### Quantitative Extraction
+**[condeg/cvm-bertimbau-sentence-transformer](https://huggingface.co/condeg/cvm-bertimbau-sentence-transformer)**
 
-Evaluated on 4,651 metric extractions across 686 filings (49 companies):
-
-| Status | Count | Share |
-|---|---|---|
-| **Exact match** | 4,425 | **95.2%** |
-| Mismatch | 141 | 3.0% |
-| Missing | 70 | 1.5% |
-| Close (≤1% error) | 15 | 0.3% |
-
-**MAPE:** < 1% across exact + close + mismatch extractions.
-
-**Key fix:** ITR income-statement pages have 4 columns `[quarterly, YTD, prior-quarterly, prior-YTD]`. Using index 1 (YTD) raised exact-match accuracy from 72% → 95%.
-
-Metrics extracted: `revenue`, `cogs`, `gross_profit`, `net_income`, `total_assets`, `total_equity`, `operating_cash_flow` (plus `ebitda` and `net_debt` where reported).
-
-### Retrieval Ablation
-
-Evaluated on 94 synthetic queries (Gemini-generated) over 97,138 chunks from 623 filings:
-
-| Configuration | Chunk Hit@5 | Filing Hit@5 | MRR |
-|---|---|---|---|
-| Dense only (fine-tuned BERTimbau) | 0.160 | 0.298 | 0.100 |
-| **Sparse only (BM25)** | **0.287** | **0.394** | **0.191** |
-| Hybrid (Dense + BM25 + RRF) | 0.287 | 0.362 | 0.173 |
-| Hybrid + Cross-encoder Reranker | 0.245 | 0.362 | 0.148 |
-
-**Best configuration:** BM25. *Filing Hit@5* (correct filing appears in top-5, not just exact chunk) reaches **39.4%** — a more meaningful metric given 97k chunks and narrow relevance labels.
-
-**Why dense underperforms BM25:** The sentence transformer was fine-tuned with doc–doc contrastive pairs (adjacent chunks from same section). At query time the input is a natural-language question — a distribution never seen during training. The fix is GPL (Generative Pseudo Labeling): generate synthetic query–chunk pairs with Gemini, then fine-tune on those.
-
-### Sentence Transformer Training
-
-- **Base model:** `neuralmind/bert-base-portuguese-cased` (BERTimbau)
-- **Loss:** MultipleNegativesRankingLoss
-- **Training pairs:** 14,500 (adjacent same-section chunk pairs)
-- **Epochs:** 10 | **Batch size:** 16 (effective 64 with gradient accumulation) | **fp16**
-- **Training loss:** 2.201 (step 50) → **0.115** (step 2,270)
-- **Hardware:** RTX A1000, ~2 hours
-- **HuggingFace Hub:** [`condeg/cvm-bertimbau-sentence-transformer`](https://huggingface.co/condeg/cvm-bertimbau-sentence-transformer)
-
-### Sentiment Classifier
-
-Binary classifier (positive / negative) on frozen BERTimbau embeddings:
-
-| Metric | Value |
-|---|---|
-| Macro F1 | **0.601** |
-| Positive F1 | 0.462 |
-| Negative F1 | 0.740 |
-| Accuracy | 0.650 |
-
-**Labels:** 500 bootstrapped via Gemini 2.5 Flash, 100 manually reviewed.
-**Class collapse to binary:** Original 3-class labels (optimistic/neutral/pessimistic) had only 11 pessimistic examples — too few for a meaningful test split. Binary split gives 22%/78% positive/negative.
+Base: `neuralmind/bert-base-portuguese-cased`
+Training: MultipleNegativesRankingLoss, 124k contrastive pairs from CVM filings, 5 epochs, fp16, effective batch 64.
 
 ---
 
-## Corpus
-
-| Stat | Value |
-|---|---|
-| Companies | 49 (B3 large-caps; CCR absent from CVM open data) |
-| Filing types | ITR (quarterly) + DFP (annual) |
-| Date range | 2022-12-31 → 2025-09-30 |
-| Total filings | 686 (504 ITR + 182 DFP) |
-| Total metrics extracted | 4,651 |
-| Total chunks indexed | 97,138 |
-| ChromaDB size | ~1.8 GB |
-| SQLite DB size | ~270 MB |
-
----
-
-## Project Structure
+## Repository Structure
 
 ```
 cvm-intelligence/
-├── src/
-│   ├── acquisition/       # CVM CSV + PDF downloaders
-│   ├── parsing/           # PyMuPDF extraction, section detection, chunking
-│   ├── extraction/        # Rule-based metric extraction + validation
-│   ├── nlp/               # BERTimbau fine-tuning, sentiment classifier
-│   ├── rag/               # Indexer, retriever (hybrid+RRF), reranker, generator
-│   └── db/                # SQLite schema + CRUD
-├── app/
-│   ├── app.py             # Streamlit entry point
-│   └── pages/
-│       ├── 1_query.py     # RAG query interface
-│       ├── 2_dashboard.py # Financial metrics dashboard
-│       ├── 3_sentiment.py # Sentiment timeline
-│       └── 4_evaluation.py# System evaluation metrics
-├── scripts/
-│   ├── run_extraction.py  # Batch PDF extraction pipeline
-│   ├── run_indexing.py    # Embed + ChromaDB + BM25 indexing
-│   ├── run_validation.py  # Validation report
-│   └── run_sentiment_scoring.py  # Classify 97k chunks
-├── notebooks/             # 6 development notebooks (01–06)
-├── models/
-│   └── sentence_transformer/  # Fine-tuned BERTimbau weights (local dev only — gitignored)
-│                              # HuggingFace: condeg/cvm-bertimbau-sentence-transformer
 ├── data/
-│   ├── raw/               # CVM CSVs + PDFs (not committed)
-│   ├── processed/         # Parsed chunks JSON, extracted metrics CSV
-│   ├── evaluation/        # Retrieval test set, sentiment labels
-│   └── cvm_metrics.db     # SQLite database
-└── vectorstore/
-    └── chromadb/          # ChromaDB persistence (~1.8 GB)
+│   ├── cvm_metrics_dashboard.db    # Slim SQLite (432 KB) — committed to git
+│   └── evaluation/                 # Pre-computed evaluation JSON artefacts
+├── models/
+│   └── sentiment_classifier/       # .joblib classifier weights (committed)
+├── src/
+│   ├── acquisition/                # CVM CSV + PDF downloaders
+│   ├── parsing/                    # PyMuPDF extraction, section detector, chunker
+│   ├── extraction/                 # Rule-based metric extractor + validator
+│   ├── nlp/                        # BERTimbau fine-tuning + sentiment classifier
+│   ├── rag/                        # Indexer, retriever, reranker, generator
+│   └── db/                         # SQLite schema + CRUD
+├── app/
+│   ├── app.py                      # Streamlit entry point
+│   ├── load_vectorstore.py         # ChromaDB availability helper
+│   └── pages/                      # 4 app pages
+├── notebooks/                      # 6 development + evaluation notebooks
+├── scripts/                        # Batch pipeline scripts
+├── requirements.txt                # Streamlit Cloud runtime deps
+└── requirements-dev.txt            # Full local dev deps (GPU pipeline)
 ```
 
 ---
 
-## Deployment
+## Local Setup
 
-### Streamlit Community Cloud
+### Prerequisites
 
-The app is designed to deploy with zero code changes. The three data pages (Dashboard, Sentiment, Evaluation) run on the 1 GB free tier. The RAG Query page degrades gracefully when the vector index is not present.
+- Python 3.10+
+- NVIDIA GPU with ≥ 6 GB VRAM (for training and indexing; app inference is CPU-only)
 
-**Step 1 — Fork the repository**
-
-```bash
-# Fork on GitHub, then clone your fork
-git clone https://github.com/YOUR_USERNAME/cvm-intelligence
-```
-
-**Step 2 — Configure secrets in the Streamlit Cloud dashboard**
-
-In *App Settings → Secrets*, paste:
-
-```toml
-GEMINI_API_KEY = "your_gemini_api_key_here"
-```
-
-The app bridges `st.secrets` into `os.environ` at startup, so all downstream code that calls `os.getenv("GEMINI_API_KEY")` works without modification.
-
-**Step 3 — Provide the SQLite database**
-
-`data/cvm_metrics.db` (270 MB) is tracked via Git LFS. Streamlit Cloud automatically pulls LFS objects during deployment.
-
-If you are building from source instead:
+### Install
 
 ```bash
-python scripts/run_extraction.py   # ~1 hour, requires raw PDFs
-```
-
-**Step 4 — Deploy**
-
-Point Streamlit Cloud at `app/app.py` as the entry point. The app uses `requirements.txt` (cloud-safe, no torch or heavy ML deps) and `packages.txt` (system libs).
-
-### What works on Streamlit Cloud vs locally
-
-| Feature | Cloud | Local (full) |
-|---|---|---|
-| Financial Dashboard (SQLite) | ✅ | ✅ |
-| Sentiment Timeline (SQLite) | ✅ | ✅ |
-| System Evaluation page | ✅ | ✅ |
-| RAG Query (hybrid retrieval + Gemini) | ❌ (graceful message) | ✅ |
-| ChromaDB vector search | ❌ (1.8 GB, not in repo) | ✅ |
-| Sentence transformer inference | ❌ (no torch on cloud) | ✅ |
-
-To run the full pipeline locally, install `requirements-dev.txt` instead:
-
-```bash
-pip install -r requirements-dev.txt
-```
-
----
-
-## Running Locally
-
-**Prerequisites:** Python 3.10+, NVIDIA GPU for training (CPU inference works).
-
-```bash
-# 1. Clone and set up environment
-git clone <repo-url>
+git clone https://github.com/conderafael/cvm-intelligence.git
 cd cvm-intelligence
 python -m venv .venv
 source .venv/bin/activate
+
+# Dashboard + evaluation only (Streamlit Cloud parity):
 pip install -r requirements.txt
 
-# 2. Set API key (local development)
-echo "GEMINI_API_KEY=your_key_here" > .env
-
-# For Streamlit Cloud deployment: copy .streamlit/secrets.toml.example to
-# .streamlit/secrets.toml and fill in your key, then configure it in the
-# Streamlit Cloud dashboard under App Settings → Secrets.
-
-# 3. Run the app (requires pre-built DB and ChromaDB)
-streamlit run app/app.py
+# Full local pipeline (RAG, training, indexing):
+pip install -r requirements.txt -r requirements-dev.txt
 ```
 
-**To reproduce the full pipeline from scratch:**
+### Configure
 
 ```bash
-# Data acquisition
-python src/acquisition/download_csvs.py
-python src/acquisition/download_pdfs.py
+# Create a .env file with your Gemini API key:
+echo "GEMINI_API_KEY=your_key_here" > .env
+```
 
-# Extraction + validation
-python scripts/run_extraction.py
-python scripts/run_validation.py
+### Run the App
 
-# NLP training (GPU required, ~2h for sentence transformer)
-python src/nlp/train_sentence_transformer.py
-python src/nlp/train_sentiment.py
-
-# Indexing (GPU helps, CPU viable)
-python scripts/run_indexing.py
-
-# Sentiment scoring (GPU recommended, ~15 min)
-python scripts/run_sentiment_scoring.py
-
-# Launch app
+```bash
 streamlit run app/app.py
 ```
 
----
+The Financial Dashboard and Evaluation pages work immediately from the committed slim SQLite database. The RAG Query page additionally requires the ChromaDB index — see full pipeline below.
 
-## Design Decisions
+### Full Pipeline (RAG included, ~2–4 hours on GPU)
 
-See [`DECISIONS.md`](DECISIONS.md) for the full decision log: every problem encountered, the investigation, the fix, and its impact on metrics.
-
-Key choices:
-- **Rule-based extraction, not LLM** — deterministic, auditable, validated against ground truth
-- **No LangChain/LlamaIndex** — every component (chunking, retrieval, reranking, generation) built explicitly for full understanding and control
-- **ChromaDB + BM25 + RRF** — hybrid retrieval because Portuguese financial text has specific terminology that benefits from exact keyword matching
-- **SQLite, not PostgreSQL** — single-file, zero-config, sufficient for 97k chunks and 4,651 metrics
-- **Binary sentiment** — class imbalance (11 pessimistic out of 500 labels) made 3-class infeasible; binary gives a workable 22/78 split
+```bash
+python scripts/run_extraction.py   # download PDFs + extract + validate metrics
+python scripts/run_indexing.py     # embed 97k chunks into ChromaDB + BM25 index
+streamlit run app/app.py           # all four pages now fully functional
+```
 
 ---
 
 ## Notebooks
 
-| Notebook | Contents |
+| Notebook | Description |
 |---|---|
-| `01_data_exploration.ipynb` | CVM CSV structure, PDF inventory, filing manifest |
-| `02_parsing_development.ipynb` | Section detection regex calibration, chunking validation |
-| `03_extraction_validation.ipynb` | Extraction accuracy analysis, failure taxonomy |
-| `04_embedding_training.ipynb` | BERTimbau fine-tuning, training curve |
-| `05_retrieval_evaluation.ipynb` | Retrieval ablation study (4 configurations) |
-| `06_sentiment_evaluation.ipynb` | Sentiment classifier training, confusion matrix, coverage |
+| `01_data_exploration.ipynb` | CVM data structure, company selection, manifest |
+| `02_parsing_development.ipynb` | PyMuPDF + pdfplumber development, section detection |
+| `03_extraction_validation.ipynb` | Metric extraction rules, failure taxonomy |
+| `04_embedding_training.ipynb` | BERTimbau fine-tuning, contrastive pair generation |
+| `05_retrieval_evaluation.ipynb` | Ablation study: dense vs sparse vs hybrid vs reranker |
+| `06_sentiment_evaluation.ipynb` | Sentiment classifier training and evaluation |
 
 ---
 
-## Tests
+## Author
 
-```bash
-pytest tests/ -v
-```
-
-Tests cover: Brazilian number format parsing, metric extraction rules, RRF fusion correctness, section detection regex, retrieval interface contracts.
+**Rafael Condé Gomes** — [condeg.rafael@gmail.com](mailto:condeg.rafael@gmail.com)
