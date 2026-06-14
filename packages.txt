@@ -1,9 +1,1 @@
-# System-level apt packages for Streamlit Community Cloud (Ubuntu).
-# The cloud requirements.txt only needs pure-Python wheels — no system packages required.
-#
-# If you extend this deployment to include the full pipeline (requirements-dev.txt),
-# PyMuPDF requires the following on Ubuntu 20.04 / 22.04:
-#   libmupdf-dev
-#   libgl1-mesa-glx
-# Modern PyMuPDF wheels (>=1.21) bundle libmupdf, so only libgl1 is typically needed:
 libgl1-mesa-glx
