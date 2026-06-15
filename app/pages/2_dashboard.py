@@ -21,7 +21,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-from app.components.charts import metric_time_series
+from components.charts import metric_time_series
 from src import config  # noqa: E402
 
 st.set_page_config(page_title="Financial Dashboard", page_icon="📈", layout="wide")
